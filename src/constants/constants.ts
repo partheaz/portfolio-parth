@@ -151,7 +151,7 @@ export const projects = [
     image: "/projects/nike-store.png",
     tech: ["UI UX", "react", "e-commerce", "node", "mongoDB"],
     links: {
-      github: "https://github.com/prachanda482244/nike-store",
+      github: "https://github.com/partheaz/nike-store-mockup",
       external: "https://nike-store-steel.vercel.app/",
     },
     reverse: true,
