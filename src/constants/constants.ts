@@ -100,48 +100,48 @@ export const projects = [
     reverse: false,
   },
   {
-    title: "Library Management System",
-    description: `Library Management System streamlines book management with features like "Add to Cart," chat support, order tracking, and data visualization, improving user experience and operational efficiency.`,
-    image: "/projects/lms.png",
-    tech: ["react", "node", "mongoDB", "express", "socket"],
+    title: "Iron Displays",
+    description: `I have worked on an in-store project where I contributed to the complete development of the store system and assisted in integrating the external Dropbox API for seamless file management. `,
+    image: "/projects/irondisplays.png",
+    tech: ["Shopify", "Liquid", "node", "express"],
     links: {
       github:
-        "https://github.com/prachanda482244/library-management-system-frontend",
-      external: "https://library-management-system-frontent.vercel.app/",
+        null,
+      external: "https://irondisplays.com/",
     },
     reverse: true,
   },
   {
-    title: "Brain Wave",
-    description: `Brainwave is a dynamic static website showcasing the power of AI and the latest in technology and design, offering visitors a glimpse into AI's transformative capabilities across various fields.`,
-    image: "/projects/brain-wave.png",
-    tech: ["react", "UI UX", "Tailwind", "SCSS"],
+    title: "Manly ",
+    description: `For the Shopify store Manly, I contributed to a full store implementation. I also developed a custom Subscribe and Pay feature to streamline subscriptions and payments, and designed custom product pages with pixel-perfect precision, delivering a cohesive and visually appealing user experience`,
+    image: "/projects/manly.png",
+    tech: ["shopify","Liquid","Subscribe & Pay"],
     links: {
-      github: "https://github.com/prachanda482244/brain-wave",
-      external: "https://brain-wave-ai-web.vercel.app/",
+      github: null,
+      external: "https://www.usemanly.com.au/",
     },
     reverse: false,
   },
   {
-    title: "Movie Flex Hub",
-    description: `Movie Flex Hub is a React app that uses external APIs to fetch and display movie data. Users can browse, discover, and access detailed information about various movies for an enhanced movie-watching experience.`,
-    image: "/projects/movie-flex-hub.png",
-    tech: ["react", "API", "Tailwind", "Responsive Design"],
+    title: "MME SOLUTIONS",
+    description: `At MME Solutions, I contributed to the development of a scalable SaaS (Software as a Service) application, leveraging AWS cloud infrastructure and Angular for the front-end. I designed and implemented key components of the platform, utilizing AWS services such as EC2, S3, and Lambda to ensure robust performance, secure storage, and serverless functionality. On the client side, I built a responsive and intuitive user interface with Angular, incorporating modern design patterns and state management to deliver a seamless user experience. My work helped create a reliable, cloud-based solution tailored to the company’s needs, optimizing both deployment efficiency and end-user satisfaction.`,
+    image: "/projects/mme-solutions.png",
+    tech: ["Angular", "API", "Tailwind", "Responsive Design", "SAAS","AWS","NodeJs"],
     links: {
-      github: "https://github.com/prachanda482244/movie-flex-hub",
-      external: "https://movie-flex-hub-itachi.vercel.app/",
+      github: null,
+      external: "https://mmesolutions.com/",
     },
     reverse: true,
   },
   {
-    title: "Online Rental Market Place",
-    description: `Online Rental Market is a MERN stack platform where users can create property listings for rent or sale, and contact owners to rent or buy, streamlining real estate transactions.`,
-    image: "/projects/rental.png",
-    tech: ["react", "node", "mongoDB", "firebase"],
+    title: "Graduation world",
+    description: `For the Graduation World store, I led the migration of the entire e-commerce platform from Magento to Shopify, ensuring a seamless transition of all products, data, and functionality. This involved transferring a large catalog of products along with their associated metafields, preserving critical details such as custom attributes and metadata. I meticulously planned and executed the migration process, handling data extraction from Magento, mapping it to Shopify’s structure, and implementing automated scripts to load products and metafields efficiently. The result was a fully functional Shopify store with enhanced performance, improved user experience, and retained data integrity, tailored to meet the specific needs of Graduation World’s graduation-focused product offerings.`,
+    image: "/projects/graduation-world.png",
+    tech: ["Shopify","Shopify Liquid","Shopify StoreFront Api","Magento","Ecomerce Migration"],
     links: {
       github:
-        "https://github.com/prachanda482244/Online-rental-market-place-BCA-6th-sem",
-      external: "https://mern-estate-bca.onrender.com/",
+        null,
+      external: "https://graduationworld.com/",
     },
     reverse: false,
   },
@@ -164,7 +164,7 @@ export const otherWorthyProject: CardProps[] = [
     description: `Integrated Salesforce and Shopify for seamless data synchronization, automating order management and enhancing customer insights.`,
     tech: ["salesforce", "shopify", "CMS"],
     githubLink:
-      "https://github.com/prachanda482244/salesforce-backend-integration",
+      null,
     externalLink: "https://www.salesforce.com/ap/?ir=1",
   },
   {
@@ -179,7 +179,7 @@ export const otherWorthyProject: CardProps[] = [
     title: "Defend Chart Implementation",
     description: `Implemented a custom data visualization solution using Apex and Highcharts to display dynamic charts, while creating custom APIs to securely store and manage data.`,
     tech: ["shopify", "node", "apex", "charts"],
-    githubLink: "https://github.com/prachanda482244/defend-backend-integration",
+    githubLink: null,
     externalLink: "https://defent.com/pages/reporting",
   },
   {
@@ -200,18 +200,18 @@ export const otherWorthyProject: CardProps[] = [
 export const socialLinks: SocialProps[] = [
   {
     icon: FiGithub,
-    url: "https://github.com/prachanda482244/",
+    url: "https://github.com/partheaz/",
   },
   {
     icon: FaInstagram,
-    url: "https://www.instagram.com/ranaprachanda01/",
+    url: "https://www.instagram.com/partheazwrld/",
   },
   {
     icon: SlSocialTwitter,
-    url: "https://x.com/Itachi482244",
+    url: "#",
   },
   {
     icon: FiLinkedin,
-    url: "https://www.linkedin.com/in/prachanda-rana/",
+    url: "https://www.linkedin.com/in/parth-pandey-852a42192/",
   },
 ];

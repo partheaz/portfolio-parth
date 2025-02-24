@@ -40,7 +40,7 @@ const Hero = () => {
         ref={addToRefs}
         className="text-3xl md:text-7xl font-extrabold text-[#ccd6f6] mb-2"
       >
-        Prachanda Rana.
+        Parth Pandey.
       </h1>
       <h2
         ref={addToRefs}
@@ -68,7 +68,7 @@ const Hero = () => {
           href="https://remix.run/"
           target="_blank"
         >
-          Remix
+          JavaScript
         </a>{" "}
         with occasional work in design and digital experiences.
       </p>

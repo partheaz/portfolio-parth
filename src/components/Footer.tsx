@@ -15,7 +15,7 @@ const Footer = () => {
         ))}
       </div>
       <p className="text-xs pb-10 tracking-widest text-gray-400 poppins-regular">
-        Designed & Built by Prachanda Rana
+        Designed & Built by Parth Pandey 
       </p>
     </footer>
   );

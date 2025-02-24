@@ -107,8 +107,8 @@ const Navbar = () => {
           ref={addToMenuRefs}
           onClick={() => {
             const link = document.createElement("a");
-            link.href = "/prachanda_rana.pdf";
-            link.download = "prachanda_rana_resume.pdf";
+            link.href = "/resume-parth.pdf";
+            link.download = "parth_pandey_resume.pdf";
             link.click();
           }}
           className="border border-teal-300 text-teal-300 px-4 py-2 rounded hover:bg-teal-300 hover:text-black transition-all duration-300"

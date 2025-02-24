@@ -78,7 +78,7 @@ const About = () => {
           className="text-gray-500 poppins-regular text-sm leading-3 md:leading-relaxed max-w-xl space-y-3 "
         >
           <p className="leading-tight tracking-wide">
-            Hello! My name is Prachanda, and I enjoy creating things that live
+            Hello! My name is Parth, and I enjoy creating things that live
             on the internet. My interest in web development started back in 2012
             when I decided to try editing custom Tumblr themes — turns out
             hacking together a custom reblog button taught me a lot about HTML &
@@ -89,7 +89,7 @@ const About = () => {
             <br />
             <a
               className="text-teal-300"
-              href="https://deerhold.com/"
+              href="https://mmesolutions.com/"
               target="_blank"
               ref={(el) => el && linksRef.current.push(el)}
             >
@@ -98,7 +98,7 @@ const About = () => {
             ,{" "}
             <a
               className="text-teal-300"
-              href="https://www.supremeitsolutions.com/"
+              href="https://www.dharanetworks.com/"
               target="_blank"
               ref={(el) => el && linksRef.current.push(el)}
             >
@@ -152,7 +152,7 @@ const About = () => {
           className="relative w-full md:w-1/3 group overflow-hidden rounded-lg"
         >
           <img
-            src="/main.jpg"
+            src="/unnamed.jpg"
             alt="myself"
             className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-500"
           />

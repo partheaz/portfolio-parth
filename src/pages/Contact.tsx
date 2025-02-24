@@ -10,13 +10,11 @@ const Contact = () => {
           Get In Touch
         </p>
         <p className="text-sm md:text-base text-[#8892b0] md:tracking-wide order leading-loose md:w-[70%] text-center mx-auto">
-          Although I’m not currently looking for any new opportunities, my inbox
-          is always open. Whether you have a question or just want to say hi,
-          I’ll try my best to get back to you!
+        I'm currently looking for new opportunities, so my inbox is always open. Whether you have a question, want to discuss potential openings, or just want to say hi, I’ll try my best to get back to you!
         </p>
         <button
           onClick={() => {
-            window.location.href = "mailto:pralhadrana123@gmail.com";
+            window.location.href = "mailto:parthpandey678@gmail.com";
           }}
           className="relative py-3 mt-10 px-8 border border-teal-300 rounded-md text-teal-300 bg-transparent overflow-hidden group"
         >
