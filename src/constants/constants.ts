@@ -74,7 +74,7 @@ export const experiences = [
      "Integrated React-Redux for state management in complex frontend applications, ensuring predictable updates and optimized performance.",
     "Utilized AWS (EC2, S3, Lambda) to architect cloud-native solutions, improving availability and cost efficiency."
     ],
-    link: null,
+    link:"#",
   },
 ];
 
