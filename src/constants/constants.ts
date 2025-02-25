@@ -41,7 +41,7 @@ export const experiences = [
   {
     company: "Cartmade",
     role: "Shopify Developer",
-    duration: "May 2024 – Present",
+    duration: " Sept 2024 – Present",
     details: [
       "Deliver high-quality, robust production code for custom Shopify apps and integrations for a diverse array of clients.",
       "Work alongside project stakeholders to research, design, and develop scalable Shopify solutions.",
@@ -51,37 +51,30 @@ export const experiences = [
     link: "https://www.cartmade.com",
   },
   {
-    company: "Angel Wings",
-    role: "Senior Engineer",
-    duration: "Sept 2022 – Mar 2024",
+    company: "MME SOLUTIONS",
+    role: "Full Stack Developer",
+    duration: "01/2023- 01/2024",
     details: [
-      "Developed scalable and reliable drone software solutions for real-time data processing and analysis.",
-      "Collaborated with cross-functional teams to design and deliver impactful drone-based solutions for various industrie",
-      "Optimized drone navigation and control systems, improving flight efficiency and reducing operational latency by 40%",
+      "Collaborated with US-based clients to design and implement full-stack solutions, leveraging ReactJS for the front end and Python for the backend, ensuring robust performance and scalability",
+      "Developed and optimized responsive UI/UX features using ReactJS, enhancing user experience across multiple devices",
+      "Designed and deployed scalable microservices using Node.js and AWS Lambda, enabling efficient, cloud-based solutions.",
+      "Improved database operations using MongoDB and MySQL, focusing on performance optimization and high scalability.",
+      "Seamlessly integrated third-party APIs and handled data migration, ensuring smooth and efficient workflows across multiple platforms."
     ],
-    link: "https://www.angelswing.io",
+    link: "https://mmesolutions.com/",
   },
   {
-    company: "Tech Crafts",
+    company: "Dhara Networks",
     role: "Engineer",
-    duration: "May 2018 – Sept 2022",
+    duration: "01/2021 - 01/2023",
     details: [
-      "Designed and implemented scalable software solutions using modern development frameworks.",
-      "Collaborated with cross-functional teams to enhance system architecture and improve overall performance.",
-      "Applied industry best practices in software development, resulting in improved code quality and system efficiency.",
+      "Developed SaaS billing platforms for international clients using Angular and Node.js, delivering highly available, reliable, and scalable solutions.",
+      "Designed and built RESTful APIs and microservices with TypeScript, enhancing modularity and enabling efficient code reuse.",
+      "Employed Docker for containerized environments, streamlining deployment consistency, development workflows, and cross-team collaboration.",
+     "Integrated React-Redux for state management in complex frontend applications, ensuring predictable updates and optimized performance.",
+    "Utilized AWS (EC2, S3, Lambda) to architect cloud-native solutions, improving availability and cost efficiency."
     ],
-    link: "https://techkraftinc.com/",
-  },
-  {
-    company: "Deer Hold",
-    role: "Mern Developer",
-    duration: "July 2017 – April 2018",
-    details: [
-      "Created interactive user interfaces with modern frameworks.",
-      "Collaborated with designers to improve the overall user experience.",
-      "Implemented best practices for frontend development, boosting site performance.",
-    ],
-    link: "https://deerhold.com/",
+    link: null,
   },
 ];
 
