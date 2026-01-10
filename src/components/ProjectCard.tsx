@@ -44,7 +44,7 @@ export const ProjectCard = ({
           <img
             src={image}
             alt={title}
-            className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500 blur-[2px] hover:blur-0"
+            className="w-full h-full object-cover transform md:blur-[2px] md:hover:blur-0 md:hover:scale-105 transition-transform duration-500"
           />
         )}
       </div>
