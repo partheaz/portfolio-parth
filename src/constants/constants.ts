@@ -39,9 +39,20 @@ export const technologies = [
 
 export const experiences = [
   {
+    company: "Nine 15",
+    role: "Shopify Full Stack Developer",
+    duration: "June 2025- Present",
+    details: [
+      "Working with the new Horizon theme to develop and customize Shopify storefronts, ensuring modern design and optimal user experience.",
+      "Developed custom solutions including desktop drawer functionality, quick add to cart features, and sticky add to cart components to enhance e-commerce conversion rates.",
+      "Assisting clients with third-party integrations including Klaviyo email marketing automation and Rebuy upsell applications to optimize marketing workflows and increase revenue.",
+    ],
+    link: "https://www.nine15.com/",
+  },
+  {
     company: "Cartmade",
     role: "Shopify Developer",
-    duration: " Sept 2024 – Present",
+    duration: " Sept 2024 – June 2025",
     details: [
       "Deliver high-quality, robust production code for custom Shopify apps and integrations for a diverse array of clients.",
       "Work alongside project stakeholders to research, design, and develop scalable Shopify solutions.",
@@ -91,6 +102,18 @@ export const projects = [
         "https://apps.shopify.com/pdf-converter?search_id=0ff553ac-5d34-463f-a854-819b32452900&surface_detail=cm&surface_inter_position=1&surface_intra_position=10&surface_type=search",
     },
     reverse: false,
+  },
+  {
+    title: "Almsthre",
+    description: `Led the complete build-up of the Almsthre Shopify store, implementing custom solutions that elevate the user experience. Developed a custom desktop drawer for enhanced navigation, integrated quick add functionality with Horizon theme's built-in swatches for seamless product selection, and created a custom quick add to cart feature that streamlines the purchasing process and improves conversion rates.`,
+    image: "/projects/almsthre.png",
+    video: "/projects/almsthre.mp4",
+    tech: ["Shopify", "Horizon Theme", "Liquid", "Custom Solutions", "Quick Add"],
+    links: {
+      github: null,
+      external: "https://almsthre.com/",
+    },
+    reverse: true,
   },
   {
     title: "Iron Displays",

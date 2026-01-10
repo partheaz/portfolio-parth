@@ -72,28 +72,36 @@ const About = () => {
       className="py-20 bg-[#0A192F] text-white md:px-16 px-8"
     >
       <Title index={"01"} title="About me" />
-      <div className="flex flex-col md:flex-row justify-between gap-12">
+      <div className="flex flex-col md:flex-row justify-between gap-12 relative">
         <div
           ref={textRef}
-          className="text-gray-500 poppins-regular text-sm leading-3 md:leading-relaxed max-w-xl space-y-3 "
+          className="text-gray-500 poppins-regular text-sm leading-3 md:leading-relaxed max-w-xl space-y-3 relative z-0"
         >
           <p className="leading-tight tracking-wide">
-            Hello! My name is Parth, and I enjoy creating things that live
-            on the internet. My interest in web development started back in 2012
-            when I decided to try editing custom Tumblr themes — turns out
-            hacking together a custom reblog button taught me a lot about HTML &
-            CSS!
+            Hello! My name is Parth, and I'm a passionate developer specializing in 
+            building innovative e-commerce solutions. My journey in web development started 
+            back in 2012 when I began experimenting with custom web themes — this curiosity 
+            sparked a deep passion for crafting seamless digital experiences.
           </p>
           <p className="leading-tight  tracking-wide">
-            Fast-forward to today, I’ve had the privilege of working at
+            Fast-forward to today, I've had the privilege of working at
             <br />
+            <a
+              className="text-teal-300"
+              href="https://www.cartmade.com"
+              target="_blank"
+              ref={(el) => el && linksRef.current.push(el)}
+            >
+              a Shopify development agency
+            </a>
+            ,{" "}
             <a
               className="text-teal-300"
               href="https://mmesolutions.com/"
               target="_blank"
               ref={(el) => el && linksRef.current.push(el)}
             >
-              an saas based solution
+              a SaaS-based solutions company
             </a>
             ,{" "}
             <a
@@ -102,16 +110,7 @@ const About = () => {
               target="_blank"
               ref={(el) => el && linksRef.current.push(el)}
             >
-              a start-up
-            </a>
-            ,{" "}
-            <a
-              ref={(el) => el && linksRef.current.push(el)}
-              className="text-teal-300"
-              href="https://angelswing.io/"
-              target="_blank"
-            >
-              a drones
+              innovative startups
             </a>
             , and{" "}
             <a
@@ -120,16 +119,20 @@ const About = () => {
               target="_blank"
               ref={(el) => el && linksRef.current.push(el)}
             >
-              a huge corporation.
+              enterprise corporations
             </a>
-            <br />
-            My main focus these days is building accessible, inclusive products
-            and digital experiences for a variety of clients.
+            .
           </p>
           <p className="leading-tight  tracking-wide">
-            I also recently added a blog that covers everything you need to
-            build a web app with the API using{" "}
-            <span className="text-teal-300 font-semibold">Node & React</span>.
+            My primary focus is <span className="text-teal-300 font-semibold">Shopify development</span>, 
+            where I build custom themes, develop Shopify apps, and create tailored e-commerce solutions 
+            that drive conversions and enhance user experience. I specialize in integrating third-party 
+            tools like Klaviyo, Rebuy, and other marketing automation platforms to help businesses scale.
+          </p>
+          <p className="leading-tight  tracking-wide">
+            I'm dedicated to delivering high-quality, scalable solutions using modern web technologies, 
+            with expertise in <span className="text-teal-300 font-semibold">React, Node.js, TypeScript</span>, 
+            and the <span className="text-teal-300 font-semibold">Shopify ecosystem</span>.
           </p>
           <div className="flex pt-2  flex-col gap-4">
             <p>Here are a few technologies I’ve been working with recently:</p>
@@ -149,14 +152,14 @@ const About = () => {
 
         <div
           ref={imageRef}
-          className="relative w-full md:w-1/3 group overflow-hidden rounded-lg"
+          className="relative w-full md:w-1/3 group overflow-visible rounded-lg transition-all duration-500 hover:z-50 hover:scale-110"
         >
           <img
             src="/unnamed.jpg"
             alt="myself"
-            className="w-full h-full object-cover transform scale-100 group-hover:scale-105 transition-transform duration-500"
+            className="w-full h-full object-cover rounded-lg shadow-lg transition-all duration-500 group-hover:shadow-2xl"
           />
-          <div className="absolute inset-0 bg-teal-300 opacity-0 group-hover:opacity-10 transition-opacity duration-500"></div>
+          <div className="absolute inset-0 bg-teal-300 opacity-20 group-hover:opacity-0 transition-opacity duration-500 rounded-lg"></div>
         </div>
       </div>
     </section>

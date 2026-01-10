@@ -6,6 +6,7 @@ export const ProjectCard = ({
   title,
   description,
   image,
+  video,
   tech,
   links,
   reverse,
@@ -25,11 +26,27 @@ export const ProjectCard = ({
       } space-y-6 md:space-y-0 md:space-x-6`}
     >
       <div className="w-full md:h-96 h-40 md:w-[60%] overflow-hidden rounded-lg shadow-lg">
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500 blur-[2px] hover:blur-0"
-        />
+        {video ? (
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            className="w-full h-full object-cover"
+            onError={(e) => console.error('Video failed to load:', e)}
+          >
+            <source src={video} type="video/mp4" />
+            <source src={video} type="video/quicktime" />
+            Your browser does not support the video tag.
+          </video>
+        ) : (
+          <img
+            src={image}
+            alt={title}
+            className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-500 blur-[2px] hover:blur-0"
+          />
+        )}
       </div>
 
       {/* Text */}
