@@ -1,0 +1,69 @@
+.bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  min-height: var(--action-bar-h);
+  padding: 10px var(--gutter) max(10px, env(safe-area-inset-bottom));
+  background: var(--charcoal);
+  color: var(--paper);
+  transition: transform var(--t-ui) var(--ease), visibility 0s;
+}
+
+/* Slid out: also leave the tab order once the slide has finished. */
+.bar[data-hidden="true"] {
+  transform: translateY(100%);
+  visibility: hidden;
+  transition:
+    transform var(--t-ui) var(--ease-exit),
+    visibility 0s linear var(--t-ui);
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--paper-55);
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--r-pill);
+  background: var(--status);
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 16px;
+  border-radius: var(--r);
+  background: var(--paper);
+  color: var(--charcoal);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition: transform var(--t-press) var(--ease);
+}
+
+.cta:active {
+  transform: scale(0.985);
+}
+
+@media (min-width: 900px) {
+  .bar {
+    display: none;
+  }
+}

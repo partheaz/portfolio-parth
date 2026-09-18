@@ -1,0 +1,90 @@
+.section {
+  padding: var(--section-pt) var(--gutter) 0;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.block {
+  padding: 24px 0 28px;
+  border-bottom: 1px solid var(--rule);
+  transition: background var(--t-ui) var(--ease);
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--ink-40);
+  font-variant-numeric: tabular-nums;
+}
+
+.title {
+  margin: 10px 0 14px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 19px;
+  letter-spacing: -0.01em;
+}
+
+.items {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  color: var(--ink-66);
+}
+
+/* 600–899: two columns */
+@media (min-width: 600px) and (max-width: 899px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .block {
+    padding-right: 20px;
+  }
+
+  .block:nth-child(odd) {
+    border-right: 1px solid var(--rule);
+  }
+
+  .block:nth-child(even) {
+    padding-left: 20px;
+  }
+}
+
+/* Desktop: three columns */
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .block {
+    padding: clamp(24px, 3vw, 36px) 20px clamp(28px, 3.4vw, 44px) 20px;
+    border-right: 1px solid var(--rule);
+  }
+
+  .block:nth-child(3n + 1) {
+    padding-left: 0;
+  }
+
+  .block:nth-child(3n) {
+    border-right: 0;
+  }
+
+  .title {
+    font-size: 21px;
+  }
+}
+
+@media (min-width: 900px) and (hover: hover) {
+  .block:hover {
+    background: var(--hover-surface);
+  }
+}

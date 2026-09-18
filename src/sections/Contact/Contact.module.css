@@ -1,0 +1,115 @@
+.section {
+  margin-top: var(--section-pt);
+  padding: 64px var(--gutter) 40px;
+  background: var(--charcoal);
+  color: var(--paper);
+}
+
+.label {
+  padding-bottom: clamp(28px, 4vw, 48px);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper-50);
+}
+
+.title {
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(34px, 9.6vw, 48px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-wrap: pretty;
+}
+
+.ctaRow {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  padding: clamp(32px, 4vw, 52px) 0;
+}
+
+.cta {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.helper {
+  max-width: 26ch;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--paper-45);
+}
+
+.links {
+  display: grid;
+  grid-template-columns: 1fr;
+  border-top: 1px solid var(--rule-inv-strong);
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 56px;
+  padding: 20px 20px 20px 0;
+  border-bottom: 1px solid var(--rule-inv-mid);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.arrow {
+  opacity: 0.5;
+}
+
+@media (hover: hover) {
+  .link:hover {
+    color: var(--accent-on-dark);
+  }
+}
+
+@media (min-width: 480px) and (max-width: 899px) {
+  .links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 900px) {
+  .section {
+    padding: clamp(64px, 9vw, 140px) var(--gutter) clamp(48px, 6vw, 88px);
+  }
+
+  .title {
+    font-size: clamp(38px, 7.6vw, 108px);
+  }
+
+  .ctaRow {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .cta {
+    width: auto;
+    justify-content: center;
+  }
+
+  .links {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .link {
+    align-items: baseline;
+    min-height: 0;
+  }
+}

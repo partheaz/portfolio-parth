@@ -1,44 +1,48 @@
-import { Route, Routes } from "react-router-dom";
-import Hero from "./components/Hero";
-import Navbar from "./components/Navbar";
-import About from "./pages/About";
-import NoteWorthyProjects from "./pages/NoteWorthyProjects";
-import Projects from "./pages/Projects";
-import Worked from "./pages/Worked";
-import Archieve from "./components/Archieve";
-import Contact from "./pages/Contact";
-import Footer from "./components/Footer";
-import RightMail from "./components/RightMail";
-import SocialNavigation from "./components/SocialNavigation";
+import { lazy, Suspense, useCallback, useRef, useState } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
+import { Header } from "./components/Header/Header";
+import { Drawer } from "./components/Drawer/Drawer";
+import { Footer } from "./components/Footer/Footer";
+import { MobileActionBar } from "./components/MobileActionBar/MobileActionBar";
+import { useHashScroll } from "./hooks/useHashScroll";
+import { DESKTOP, useMediaQuery } from "./hooks/useMediaQuery";
+import Home from "./pages/Home";
+import styles from "./App.module.css";
 
-const App = () => {
+const CaseStudy = lazy(() => import("./pages/CaseStudy/CaseStudy"));
+
+export default function App() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const menuRef = useRef<HTMLButtonElement>(null);
+  const pageRef = useRef<HTMLDivElement>(null);
+  const isDesktop = useMediaQuery(DESKTOP);
+  const closeDrawer = useCallback(() => setDrawerOpen(false), []);
+
+  useHashScroll();
+
   return (
-    <div className="bg-[#0a182d] antialiased relative fira-code-light container md:px-10 min-h-screen w-full text-[#64ffda] ">
-      <div className="md:w-[85%]  mx-auto md:overflow-visible overflow-hidden">
-        <Navbar />
+    <>
+      <div ref={pageRef}>
+        <a href="#main" className={styles.skip}>
+          Skip to content
+        </a>
+        <Header drawerOpen={drawerOpen} onMenu={() => setDrawerOpen(true)} menuRef={menuRef} />
         <Routes>
+          <Route path="/" element={<Home />} />
           <Route
-            path="/"
+            path="/work/:slug"
             element={
-              <>
-                <Hero />
-                <About />
-                <Worked />
-                <Projects />
-                <NoteWorthyProjects />
-                <Contact />
-              </>
+              <Suspense fallback={<div className={styles.fallback} />}>
+                <CaseStudy />
+              </Suspense>
             }
           />
-
-          <Route path="/archieve" element={<Archieve />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
-        <RightMail />
-        <SocialNavigation />
         <Footer />
+        {!isDesktop && <MobileActionBar drawerOpen={drawerOpen} />}
       </div>
-    </div>
+      <Drawer open={drawerOpen} onClose={closeDrawer} returnFocusRef={menuRef} pageRef={pageRef} />
+    </>
   );
-};
-
-export default App;
+}

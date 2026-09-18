@@ -1,0 +1,79 @@
+:root {
+  /* colour */
+  --bone: #F2EDE4;
+  --paper: #F7F3EC;
+  --ink: #1B1D20;
+  --charcoal: #121311;
+  --accent: #2B31C9;
+  --status: #3F7A55;
+  --hover-surface: #EDE6DB;
+  --placeholder: #E8E1D5;
+
+  --ink-85: rgba(27, 29, 32, 0.85);
+  --ink-82: rgba(27, 29, 32, 0.82);
+  --ink-80: rgba(27, 29, 32, 0.80);
+  --ink-78: rgba(27, 29, 32, 0.78);
+  --ink-75: rgba(27, 29, 32, 0.75);
+  --ink-70: rgba(27, 29, 32, 0.70);
+  --ink-66: rgba(27, 29, 32, 0.66);
+  /* Contrast: ink below .62 fails 4.5:1 on bone (.55 = 3.65:1, .45 = 2.75:1).
+     Every label tier from .62 down is raised to .66 (5.1:1). Names are kept so
+     each component still reads like the handoff. */
+  --ink-62: rgba(27, 29, 32, 0.66);
+  --ink-55: rgba(27, 29, 32, 0.66);
+  --ink-50: rgba(27, 29, 32, 0.66);
+  --ink-45: rgba(27, 29, 32, 0.66);
+  --ink-40: rgba(27, 29, 32, 0.66);
+  --rule: rgba(27, 29, 32, 0.14);
+  --rule-strong: rgba(27, 29, 32, 0.20);
+  --rule-soft: rgba(27, 29, 32, 0.08);
+  --rule-mid: rgba(27, 29, 32, 0.12);
+  --rule-card: rgba(27, 29, 32, 0.16);
+  --rule-hover: rgba(27, 29, 32, 0.50);
+
+  /* On charcoal .50 passes (4.9:1); .45 (4.2:1) and .40 (3.6:1) are raised to .55 (5.7:1). */
+  --paper-55: rgba(247, 243, 236, 0.55);
+  --paper-50: rgba(247, 243, 236, 0.50);
+  --paper-45: rgba(247, 243, 236, 0.55);
+  --paper-40: rgba(247, 243, 236, 0.55);
+  --rule-inv: rgba(247, 243, 236, 0.14);
+  --rule-inv-strong: rgba(247, 243, 236, 0.18);
+  --rule-inv-mid: rgba(247, 243, 236, 0.12);
+  --rule-inv-soft: rgba(247, 243, 236, 0.10);
+  /* Accent on charcoal is 2.1:1; text on inverted surfaces uses a lifted accent (7.0:1). */
+  --accent-on-dark: #8F95FF;
+
+  /* type */
+  --font-display: "Syne", sans-serif;
+  --font-body: "Hanken Grotesk", system-ui, sans-serif;
+  --font-mono: "DM Mono", ui-monospace, monospace;
+
+  /* layout */
+  --gutter: 20px;
+  --grid-gap: 24px;
+  --section-pt: clamp(64px, 9vw, 140px);
+  --header-h: 84px;
+  --action-bar-h: 0px;
+
+  /* radius */
+  --r: 4px;
+  --r-device: 22px;
+  --r-pill: 999px;
+
+  /* motion */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --ease-exit: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-press: 120ms;
+  --t-ui: 200ms;
+  --t-reveal: 420ms;
+
+  --shadow-card: 0 18px 40px -28px rgba(27, 29, 32, 0.5);
+
+  --placeholder-stripes: repeating-linear-gradient(135deg, rgba(27, 29, 32, 0.055) 0 1px, transparent 1px 7px);
+}
+
+@media (max-width: 899px) {
+  :root {
+    --action-bar-h: 64px;
+  }
+}

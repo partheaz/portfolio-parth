@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- TODO(owner): replace example.com with the production domain. -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://example.com/</loc></url>
+  <url><loc>https://example.com/work/100-percent</loc></url>
+  <url><loc>https://example.com/work/iron-displays</loc></url>
+  <url><loc>https://example.com/work/graduation-world</loc></url>
+  <url><loc>https://example.com/work/catalog2cart</loc></url>
+  <url><loc>https://example.com/work/almsthre</loc></url>
+</urlset>

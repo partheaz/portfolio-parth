@@ -1,0 +1,112 @@
+.section {
+  padding: var(--section-pt) var(--gutter) 0;
+}
+
+.grid {
+  display: grid;
+  gap: clamp(24px, 3vw, 48px);
+  padding-top: clamp(32px, 4vw, 56px);
+}
+
+.portrait {
+  aspect-ratio: 4 / 5;
+  max-width: 420px;
+}
+
+.portrait img {
+  filter: grayscale(1) contrast(1.05);
+}
+
+.quote {
+  margin-bottom: 24px;
+  max-width: 30ch;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(23px, 6.4vw, 30px);
+  line-height: 1.18;
+  letter-spacing: -0.01em;
+}
+
+.body {
+  margin-bottom: 16px;
+  max-width: 58ch;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-80);
+}
+
+.body:last-child {
+  margin-bottom: 32px;
+}
+
+.table {
+  border-top: 1px solid var(--rule-strong);
+}
+
+.job {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 12px 20px;
+  align-items: baseline;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--rule-mid);
+}
+
+.company {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.role {
+  padding-top: 5px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-50);
+}
+
+.years {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.04em;
+  color: var(--ink-55);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 479px) {
+  .portrait {
+    aspect-ratio: 1 / 1;
+  }
+}
+
+@media (max-width: 359px) {
+  .job {
+    grid-template-columns: 1fr;
+    gap: 6px;
+  }
+}
+
+@media (min-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .portraitCell {
+    grid-column: span 5;
+  }
+
+  .portrait {
+    position: sticky;
+    top: calc(var(--header-h) + 24px);
+  }
+
+  .text {
+    grid-column: span 7;
+  }
+
+  .quote {
+    font-size: clamp(25px, 3.1vw, 40px);
+  }
+}

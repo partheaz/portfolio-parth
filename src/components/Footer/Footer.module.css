@@ -1,0 +1,21 @@
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px var(--gutter);
+  background: var(--charcoal);
+  border-top: 1px solid var(--rule-inv-mid);
+  color: var(--paper-45);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 899px) {
+  .footer {
+    padding-bottom: calc(16px + var(--action-bar-h) + env(safe-area-inset-bottom));
+  }
+}

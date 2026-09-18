@@ -1,0 +1,188 @@
+.section {
+  padding: var(--section-pt) var(--gutter) 0;
+}
+
+.row {
+  display: block;
+  color: var(--ink);
+}
+
+/* Mobile: image first, then title, then text. Whole block is the tap target. */
+.rowInner {
+  display: grid;
+  grid-template-areas:
+    "shot"
+    "title"
+    "text";
+}
+
+.item + .item .row {
+  border-top: 1px solid var(--rule-mid);
+}
+
+.row {
+  padding: 24px 0;
+  transition: background var(--t-press) var(--ease);
+}
+
+.row:active {
+  background: var(--hover-surface);
+}
+
+.title {
+  grid-area: title;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding-top: 12px;
+  font-weight: inherit;
+}
+
+.num {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  color: var(--ink-45);
+  font-variant-numeric: tabular-nums;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(27px, 8vw, 36px);
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.text {
+  grid-area: text;
+}
+
+.line {
+  padding-top: 6px;
+  max-width: 52ch;
+  font-size: 15px;
+  line-height: 1.45;
+  color: var(--ink-78);
+}
+
+.stack {
+  padding-top: 8px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-45);
+}
+
+.cta {
+  display: inline-flex;
+  padding-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.shot {
+  grid-area: shot;
+  aspect-ratio: 4 / 3;
+}
+
+@media (max-width: 479px) {
+  .fourth {
+    display: none;
+  }
+}
+
+.also {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 28px;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.alsoLabel {
+  padding-right: 6px;
+  color: var(--ink-45);
+}
+
+.alsoList {
+  color: var(--ink-70);
+}
+
+/* Desktop: title line, then text (left) + 16:10 image (right). */
+@media (min-width: 900px) {
+  .item + .item .row {
+    border-top: 0;
+  }
+
+  .row {
+    padding: clamp(24px, 3vw, 40px) 0;
+    border-bottom: 1px solid var(--rule);
+    transition:
+      padding-left var(--t-ui) var(--ease),
+      border-color var(--t-ui) var(--ease);
+  }
+
+  .row:active {
+    background: none;
+  }
+
+  .rowInner {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "title title"
+      "text shot";
+    gap: 20px;
+    align-items: start;
+  }
+
+  .title {
+    gap: 14px;
+    padding-top: 0;
+  }
+
+  .num {
+    font-size: 10px;
+  }
+
+  .brand {
+    font-size: clamp(30px, 5.4vw, 74px);
+    line-height: 0.95;
+  }
+
+  .line {
+    padding-top: 0;
+    font-size: 16px;
+  }
+
+  .stack {
+    padding-top: 12px;
+  }
+
+  .cta {
+    padding-top: 16px;
+  }
+
+  .shot {
+    aspect-ratio: 16 / 10;
+  }
+
+  .also {
+    font-size: 9px;
+  }
+}
+
+@media (min-width: 900px) and (hover: hover) {
+  .row:hover {
+    padding-left: 12px;
+    border-bottom-color: var(--rule-hover);
+    color: var(--ink);
+  }
+}

@@ -1,0 +1,26 @@
+.skip {
+  position: fixed;
+  top: 8px;
+  left: 8px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 16px;
+  border-radius: var(--r);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: translateY(-200%);
+}
+
+.skip:focus-visible {
+  transform: none;
+}
+
+.fallback {
+  min-height: 100svh;
+}

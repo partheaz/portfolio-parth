@@ -1,0 +1,55 @@
+.swatch {
+  flex: 0 0 auto;
+  height: 38px;
+  padding: 0 16px;
+  border: 1px solid rgba(27, 29, 32, 0.22);
+  border-radius: var(--r);
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    background var(--t-press) var(--ease),
+    border-color var(--t-press) var(--ease),
+    color var(--t-press) var(--ease);
+}
+
+.swatch[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
+}
+
+@media (hover: hover) {
+  .swatch[aria-pressed="false"]:hover {
+    border-color: var(--ink);
+  }
+}
+
+@media (max-width: 899px) {
+  .swatch {
+    height: 44px;
+    padding: 0 14px;
+    scroll-snap-align: start;
+  }
+}
+
+.chip {
+  padding: 8px 12px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--ink-75);
+}
+
+@media (max-width: 899px) {
+  .chip {
+    font-size: 10px;
+  }
+}

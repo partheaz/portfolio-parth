@@ -1,0 +1,21 @@
+.header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--rule-strong);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.label {
+  font: inherit;
+}
+
+.meta {
+  color: var(--ink-45);
+  font-variant-numeric: tabular-nums;
+}

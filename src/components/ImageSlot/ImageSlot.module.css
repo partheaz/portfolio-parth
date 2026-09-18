@@ -1,0 +1,54 @@
+.slot {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  background-color: var(--placeholder);
+  background-image: var(--placeholder-stripes);
+}
+
+.slot picture {
+  position: absolute;
+  inset: 0;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: var(--object-position, 50% 50%);
+}
+
+.caption {
+  padding: 12px;
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-50);
+}
+
+.caption[data-size="md"] {
+  padding: 16px;
+  font-size: 10px;
+}
+
+/* Second shot: hidden on touch and below 900px; fades in while the enclosing link is hovered. */
+.second {
+  display: none;
+}
+
+@media (min-width: 900px) and (hover: hover) {
+  .second {
+    display: block;
+    opacity: 0;
+    transition: opacity var(--t-ui) var(--ease);
+  }
+
+  :global(a:hover) .second {
+    opacity: 1;
+  }
+}

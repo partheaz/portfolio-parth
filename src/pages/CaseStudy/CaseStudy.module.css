@@ -1,0 +1,473 @@
+/* ---------- Intro ---------- */
+.intro {
+  padding: clamp(40px, 6vw, 88px) var(--gutter) clamp(28px, 4vw, 48px);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin: -12px 0;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-55);
+}
+
+.kicker {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding-top: clamp(28px, 4vw, 52px);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-55);
+}
+
+.num {
+  color: var(--ink-45);
+  font-variant-numeric: tabular-nums;
+}
+
+.title {
+  margin-top: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(40px, 11vw, 56px);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
+}
+
+.line {
+  margin-top: 20px;
+  max-width: 46ch;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--ink-80);
+}
+
+.visit {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  margin-top: 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* ---------- Cover ---------- */
+.cover {
+  padding: 0 var(--gutter);
+}
+
+.coverImage {
+  aspect-ratio: 16 / 9;
+}
+
+@media (max-width: 479px) {
+  .coverImage {
+    aspect-ratio: 4 / 3;
+  }
+}
+
+/* ---------- Body: rail above narrative on mobile ---------- */
+.body {
+  display: grid;
+  gap: 32px;
+  padding: 48px var(--gutter) 0;
+}
+
+.narrative {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+/* ---------- Spec card (shared) ---------- */
+.card {
+  border: 1px solid var(--rule-card);
+  border-radius: var(--r);
+  background: var(--paper);
+}
+
+.cardHead {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--rule-mid);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-50);
+}
+
+.cardRows {
+  padding: 4px 14px 14px;
+}
+
+.specRows {
+  margin: 0;
+}
+
+.specRow {
+  display: grid;
+  grid-template-columns: 88px 1fr;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule-soft);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.specRow dt {
+  color: var(--ink-45);
+}
+
+.specRow dd {
+  margin: 0;
+  text-align: right;
+  line-height: 1.5;
+}
+
+.cardCta {
+  padding: 0 14px 14px;
+}
+
+.discuss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 46px;
+  border-radius: var(--r);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    background var(--t-press) var(--ease),
+    transform var(--t-press) var(--ease);
+}
+
+.discuss:active {
+  transform: scale(0.985);
+}
+
+/* Mobile accordion */
+.summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 0 14px;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-50);
+}
+
+.summary::-webkit-details-marker {
+  display: none;
+}
+
+/* + that collapses to − : the vertical bar rotates flat when open. */
+.indicator {
+  position: relative;
+  width: 10px;
+  height: 10px;
+  color: var(--ink);
+}
+
+.indicator::before,
+.indicator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 10px;
+  height: 1px;
+  background: currentColor;
+}
+
+.indicator::after {
+  transform: rotate(90deg);
+  transition: transform var(--t-ui) var(--ease);
+}
+
+.accordion[open] .indicator::after {
+  transform: rotate(0deg);
+}
+
+.accordion[open] .summary {
+  border-bottom: 1px solid var(--rule-mid);
+}
+
+.mobileCta {
+  padding-top: 8px;
+}
+
+/* ---------- Narrative sections ---------- */
+.sectionHead {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--rule-strong);
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.para {
+  margin-top: 20px;
+  max-width: 62ch;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--ink-82);
+}
+
+.paraBuild {
+  margin-bottom: 28px;
+}
+
+.paraExperience {
+  margin-bottom: 24px;
+}
+
+/* Flow stepper — mobile < 600: vertical timeline */
+.flow {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.flow::before {
+  content: "";
+  position: absolute;
+  top: 22px;
+  bottom: 22px;
+  left: 10px;
+  width: 1px;
+  background: var(--accent);
+}
+
+.step {
+  position: relative;
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.step:first-child {
+  border-top: 1px solid var(--rule);
+}
+
+.stepNum {
+  justify-self: start;
+  padding: 2px 0;
+  background: var(--bone);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.stepLabel {
+  font-size: 14px;
+  line-height: 1.4;
+  color: var(--ink-85);
+}
+
+/* ≥ 600: wrapping cards */
+@media (min-width: 600px) {
+  .flow {
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .flow::before {
+    display: none;
+  }
+
+  .step,
+  .step:first-child {
+    display: block;
+    flex: 1 1 150px;
+    min-width: 150px;
+    padding: 14px;
+    border: 1px solid var(--rule-card);
+    border-radius: var(--r);
+    background: var(--paper);
+  }
+
+  .stepNum {
+    display: block;
+    padding: 0;
+    background: none;
+  }
+
+  .stepLabel {
+    display: block;
+    padding-top: 8px;
+  }
+}
+
+.details {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.detail {
+  aspect-ratio: 4 / 3;
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 20px;
+}
+
+.result {
+  margin-top: 20px;
+  max-width: 46ch;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(21px, 6vw, 26px);
+  line-height: 1.25;
+}
+
+/* ---------- Next project ---------- */
+.next {
+  padding: clamp(56px, 8vw, 120px) var(--gutter) clamp(40px, 5vw, 72px);
+}
+
+.nextLink {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 20px;
+  min-height: 44px;
+  padding: clamp(24px, 3vw, 40px) 0;
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong);
+  color: var(--ink);
+  transition: padding-left var(--t-ui) var(--ease);
+}
+
+.nextLabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-45);
+}
+
+.nextBrand {
+  display: block;
+  padding-top: 10px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 8vw, 40px);
+  line-height: 1;
+}
+
+.nextArrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+}
+
+@media (hover: hover) {
+  .back:hover {
+    color: var(--accent);
+  }
+
+  .discuss:hover {
+    background: var(--accent);
+    color: var(--paper);
+  }
+
+  .nextLink:hover {
+    padding-left: 12px;
+    color: var(--ink);
+  }
+}
+
+/* ---------- Desktop ---------- */
+@media (min-width: 900px) {
+  .title {
+    font-size: clamp(44px, 9.5vw, 132px);
+  }
+
+  .line {
+    font-size: clamp(17px, 1.5vw, 20px);
+  }
+
+  .back {
+    min-height: 0;
+    margin: 0;
+  }
+
+  .body {
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(24px, 3vw, 48px);
+    padding: clamp(48px, 7vw, 112px) var(--gutter) 0;
+  }
+
+  .narrative {
+    grid-column: span 8;
+    order: 1;
+    gap: clamp(40px, 5vw, 72px);
+  }
+
+  .rail {
+    grid-column: span 4;
+    order: 2;
+    position: sticky;
+    top: 104px;
+    align-self: start;
+  }
+
+  .specRow {
+    grid-template-columns: 74px 1fr;
+  }
+
+  .para {
+    font-size: 17px;
+  }
+
+  .details {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+
+  .result {
+    font-size: clamp(22px, 2.6vw, 33px);
+  }
+
+  .nextBrand {
+    font-size: clamp(30px, 5vw, 62px);
+  }
+}

@@ -1,0 +1,48 @@
+/* Outer node follows the pointer with no easing; the inner disc animates its size. */
+.dot {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 80;
+  width: 48px;
+  height: 48px;
+  margin: -24px 0 0 -24px;
+  pointer-events: none;
+  transform: translate3d(var(--x, -100px), var(--y, -100px), 0);
+  opacity: 0;
+  transition: opacity var(--t-ui) var(--ease);
+}
+
+.dot[data-visible="true"] {
+  opacity: 1;
+}
+
+.disc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--r-pill);
+  background: var(--ink);
+  transform: scale(0.2083); /* 10px */
+  transition: transform var(--t-ui) var(--ease);
+}
+
+.dot[data-state="view"] .disc {
+  transform: scale(1);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper);
+  opacity: 0;
+  transition: opacity var(--t-press) var(--ease);
+}
+
+.dot[data-state="view"] .label {
+  opacity: 1;
+}
