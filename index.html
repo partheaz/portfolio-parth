@@ -8,7 +8,7 @@
       name="description"
       content="Parth Pandey — Shopify Developer. Custom themes, Shopify apps, platform migrations and commerce integrations for international brands."
     />
-    <meta name="theme-color" content="#F2EDE4" />
+    <meta name="theme-color" content="#131412" />
     <link rel="icon" href="/logo.avif" type="image/avif" />
 
     <meta property="og:type" content="website" />
@@ -37,8 +37,18 @@
         "sameAs": ["https://www.linkedin.com/in/parth-pandey-852a42192/", "https://github.com/partheaz/"]
       }
     </script>
-    <!-- Flags JS so scroll-reveal hidden states only apply when they can be undone. -->
-    <script>document.documentElement.classList.add("js");</script>
+    <!-- Flags JS so reveal hidden states only apply when they can be undone, and picks the
+         saved theme (dark by default) before first paint so there is no flash. -->
+    <script>
+      (function () {
+        var d = document.documentElement, t = "dark";
+        d.classList.add("js");
+        try { var s = localStorage.getItem("pp_theme"); if (s === "light" || s === "dark") t = s; } catch (e) {}
+        d.dataset.theme = t;
+        var m = document.querySelector('meta[name="theme-color"]');
+        if (m) m.content = t === "light" ? "#F2EDE4" : "#131412";
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
