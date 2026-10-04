@@ -35,7 +35,9 @@ export function ImageSlot({
   hoverImage,
 }: Props) {
   const classes = [styles.slot, className].filter(Boolean).join(" ");
-  const style = position ? ({ "--object-position": position } as CSSProperties) : undefined;
+  // An image's own focal point wins over the slot's crop, so photos keep their subject in frame.
+  const objectPosition = image?.focus ?? position;
+  const style = objectPosition ? ({ "--object-position": objectPosition } as CSSProperties) : undefined;
 
   if (!image) {
     return (
@@ -49,7 +51,7 @@ export function ImageSlot({
 
   return (
     <div className={classes} style={style} data-reveal={reveal ? "image" : undefined} ref={reveal ? revealRef : undefined}>
-      <Picture image={image} alt={alt ?? caption} sizes={sizes} priority={priority} />
+      <Picture image={image} alt={image.alt ?? alt ?? caption} sizes={sizes} priority={priority} />
       {hoverImage && <Picture image={hoverImage} alt="" sizes={sizes} className={styles.second} />}
     </div>
   );

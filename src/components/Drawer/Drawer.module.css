@@ -17,7 +17,7 @@
 .scrim {
   position: absolute;
   inset: 0;
-  background: rgba(18, 19, 17, 0.5);
+  background: var(--scrim);
   opacity: 0;
   transition: opacity var(--t-ui) var(--ease-exit);
 }
@@ -146,6 +146,21 @@
 
 .available {
   color: var(--accent-on-dark);
+}
+
+/* Rows slide in one after another as the panel opens. */
+@media (prefers-reduced-motion: no-preference) {
+  .layer[data-open="true"] .row {
+    animation: rowIn 700ms var(--ease-out) backwards;
+    animation-delay: calc(60ms + var(--i, 0) * 55ms);
+  }
+}
+
+@keyframes rowIn {
+  from {
+    opacity: 0;
+    transform: translateX(56px);
+  }
 }
 
 @media (hover: hover) {

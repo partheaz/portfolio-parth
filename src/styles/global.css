@@ -61,7 +61,11 @@ a {
 
 @media (hover: hover) {
   a:hover {
-    color: var(--accent);
+    color: var(--accent-text);
+  }
+
+  :where([data-surface="dark"]) a:hover {
+    color: var(--accent-on-dark);
   }
 }
 
@@ -80,7 +84,7 @@ p {
 
 ::selection {
   background: var(--accent);
-  color: var(--paper);
+  color: var(--on-accent);
 }
 
 [id] {
@@ -109,22 +113,32 @@ p {
 }
 
 /* Reveal: hidden state only applies once JS has flagged <html class="js">,
-   so content stays visible to crawlers and no-JS visitors. */
+   so content stays visible to crawlers and no-JS visitors.
+   text  — rises 40px and fades in.
+   image — wipes open top to bottom. */
 @media (prefers-reduced-motion: no-preference) {
   .js [data-reveal] {
     transition:
-      transform var(--t-reveal) var(--ease),
-      clip-path var(--t-reveal) var(--ease);
+      opacity var(--t-reveal) var(--ease-out),
+      transform var(--t-reveal) var(--ease-out),
+      clip-path 1200ms var(--ease-out);
     transition-delay: var(--reveal-delay, 0ms);
   }
 
   .js [data-reveal="text"]:not(.is-revealed) {
-    transform: translateY(12px);
-    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+    transform: translateY(40px);
   }
 
   .js [data-reveal="image"]:not(.is-revealed) {
-    clip-path: inset(0 0 0 100%);
+    clip-path: inset(0 0 100% 0);
+  }
+
+  /* Theme switch: cross-fade the whole page (View Transitions API). */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 420ms;
+    animation-timing-function: var(--ease);
   }
 }
 

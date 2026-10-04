@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { CurtainLink } from "../../components/CurtainLink/CurtainLink";
 import { projects } from "../../data/projects";
 import { ImageSlot } from "../../components/ImageSlot/ImageSlot";
 import styles from "./Hero.module.css";
@@ -9,7 +9,7 @@ export function HeroCarousel() {
     <ul className={styles.carousel} aria-label="Selected work">
       {projects.map((p) => (
         <li key={p.slug} className={styles.slide}>
-          <Link to={`/work/${p.slug}`} className={styles.slideLink}>
+          <CurtainLink to={`/work/${p.slug}`} curtainLabel={p.brand} className={styles.slideLink}>
             <ImageSlot
               image={p.image}
               caption={p.shot}
@@ -22,7 +22,7 @@ export function HeroCarousel() {
               <span className={styles.slideNum}>{p.num}</span>
               <span className={styles.slideBrand}>{p.brand}</span>
             </span>
-          </Link>
+          </CurtainLink>
         </li>
       ))}
     </ul>

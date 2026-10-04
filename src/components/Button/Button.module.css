@@ -22,7 +22,7 @@
   height: 44px;
   padding: 0 14px;
   background: var(--ink);
-  color: var(--paper);
+  color: var(--on-ink);
   font-size: 10px;
 }
 
@@ -36,14 +36,14 @@
 
 @media (hover: hover) {
   .ink:hover {
-    background: var(--accent);
-    color: var(--paper);
+    background: var(--accent-fill);
+    color: var(--on-accent);
   }
 
   .paper:hover {
     transform: translateY(-1px);
-    background: var(--accent);
-    color: var(--paper);
+    background: var(--accent-fill);
+    color: var(--on-accent);
   }
 
   .paper:active {

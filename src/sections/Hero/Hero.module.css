@@ -146,7 +146,7 @@
     flex: 1;
     max-width: 120px;
     height: 1px;
-    background: rgba(27, 29, 32, 0.16);
+    background: var(--rule-card);
   }
 
   .meta {
@@ -197,6 +197,11 @@
     align-self: end;
     flex-wrap: nowrap;
   }
+
+  /* Five swatches on one line beside the statement. */
+  .swatches > button {
+    padding: 0 13px;
+  }
 }
 
 /* ---------- Developer card (desktop only; rendered as a real grid item) ---------- */
@@ -213,10 +218,11 @@
   max-width: 300px;
   border: 1px solid var(--rule-card);
   border-radius: var(--r);
-  background: var(--paper);
+  background: var(--surface);
   box-shadow: var(--shadow-card);
-  transform: perspective(900px) rotateY(calc(var(--tilt-x, 0) * 4deg)) rotateX(calc(var(--tilt-y, 0) * -3deg));
-  transition: transform var(--t-ui) var(--ease);
+  transform: perspective(900px) rotateY(calc(var(--tilt-x, 0) * 6deg)) rotateX(calc(var(--tilt-y, 0) * -5deg));
+  transition: transform 600ms var(--ease-out);
+  will-change: transform;
 }
 
 .cardHead {
@@ -281,7 +287,7 @@
 }
 
 .cardSpec dd[data-accent] {
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .cardCta {
@@ -295,7 +301,7 @@
   height: 44px;
   border-radius: var(--r);
   background: var(--ink);
-  color: var(--paper);
+  color: var(--on-ink);
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
@@ -305,8 +311,8 @@
 
 @media (hover: hover) {
   .hire:hover {
-    background: var(--accent);
-    color: var(--paper);
+    background: var(--accent-fill);
+    color: var(--on-accent);
   }
 
   .slideLink:hover {

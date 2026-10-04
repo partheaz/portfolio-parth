@@ -9,7 +9,7 @@
   padding: 0 16px;
   border-radius: var(--r);
   background: var(--ink);
-  color: var(--paper);
+  color: var(--on-ink);
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.08em;

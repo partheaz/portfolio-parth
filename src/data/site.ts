@@ -24,13 +24,31 @@ export const proof = [
   { figure: "UK · US · IN", caption: "Client regions" },
 ];
 
-export const alsoShipped = "Dukeshill · ForgetMeNot · Summit Sheets · Frame Fusion · COD payment app";
+/** Smaller builds listed under the case studies. `url` links to the live store. */
+export const alsoShipped: { name: string; url?: string }[] = [
+  { name: "Circle 71", url: "https://circle71usa.com/" },
+  { name: "DukesHill", url: "https://www.dukeshill.co.uk/" },
+  { name: "Summit Sheets", url: "https://summitsheetsbedding.com/" },
+  { name: "King Henry's", url: "https://kinghenrys.com/" },
+  { name: "Alexander Bie & Co.", url: "https://alexanderbie.com/" },
+  { name: "Mutant", url: "https://madebymutant.com/" },
+  { name: "Prime Wagyu Farm", url: "https://www.primewagyufarm.com/" },
+];
+
+/** About → "Off the clock". */
+export const offTheClock = [
+  { what: "Watching football", note: "Every match, every week. My calendar has a fixture list baked in." },
+  { what: "Talking football", note: "Tactics, transfers and refereeing decisions — usually unprompted, always with conviction." },
+  { what: "Playing football", note: "My first touch gets less QA than my code. I'm working on it." },
+  { what: "FIFA", note: "Where my tactics are bold and my transfer budget is never fixed-scope." },
+  { what: "Long drives with my wife", note: "The one roadmap I'm happy to let someone else plan." },
+];
 
 export const about = {
-  quote: "I like taking complicated commerce problems and turning them into interfaces that feel obvious.",
+  quote: "If your store has a problem that doesn't fit a template, that's usually where I come in.",
   paragraphs: [
-    "Most of my work starts with a merchant process that doesn't fit the platform — a product that needs configuring before it can be priced, a catalogue stuck in Magento, an order flow that lives in someone's inbox. I build the theme code, the app, or the integration that makes it fit.",
-    "Four years in, I've spent about equal time in Liquid and in Node. I care about the editor experience as much as the storefront, I'd rather delete script than add it, and I read Core Web Vitals before I read the design file. Outside work: long-distance cycling and far too much attention to keyboards.",
+    "Most projects I take on start with something Shopify doesn't do out of the box: a product that has to be configured before it can be priced, a catalogue stuck on Magento, an order process living in someone's inbox. I build the theme feature, the app or the integration that makes it fit — and I explain the trade-offs in plain English along the way.",
+    "Four years in, I keep two people in mind on every build: your shopper, who should find it easy to buy, and your team, who should be able to change the store without waiting on a developer. I'd rather remove code than add it, and I check page speed before I check the design file.",
   ],
 };
 

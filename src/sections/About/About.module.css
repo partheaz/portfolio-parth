@@ -13,10 +13,6 @@
   max-width: 420px;
 }
 
-.portrait img {
-  filter: grayscale(1) contrast(1.05);
-}
-
 .quote {
   margin-bottom: 24px;
   max-width: 30ch;
@@ -108,5 +104,52 @@
 
   .quote {
     font-size: clamp(25px, 3.1vw, 40px);
+  }
+}
+
+/* Off the clock: hobbies, between the paragraphs and the experience table. */
+.offClock {
+  margin-bottom: 32px;
+}
+
+.offLabel {
+  padding-bottom: 12px;
+  font-family: var(--font-mono);
+  font-weight: 400;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-55);
+}
+
+.offList {
+  border-top: 1px solid var(--rule-mid);
+}
+
+.offItem {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 4px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--rule-soft);
+}
+
+.offWhat {
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.offNote {
+  max-width: 52ch;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-66);
+}
+
+@media (min-width: 600px) {
+  .offItem {
+    grid-template-columns: 190px minmax(0, 1fr);
+    gap: 20px;
+    align-items: baseline;
   }
 }

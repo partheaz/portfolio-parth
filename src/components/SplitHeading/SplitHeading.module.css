@@ -1,0 +1,33 @@
+.line {
+  display: block;
+  overflow: hidden;
+  /* Room for descenders inside the clip, without changing the line box. */
+  padding-bottom: 0.12em;
+  margin-bottom: -0.12em;
+}
+
+.line[data-accent] {
+  color: var(--accent-text);
+}
+
+.part {
+  display: inline-block;
+  transform-origin: 0 100%;
+}
+
+.part[data-word]:not(:last-child) {
+  margin-right: 0.22em;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  :global(.js) .part {
+    animation: rise 1100ms var(--ease-out) both;
+    animation-delay: calc(100ms + var(--i, 0) * 42ms);
+  }
+}
+
+@keyframes rise {
+  from {
+    transform: translateY(110%) rotate(8deg);
+  }
+}

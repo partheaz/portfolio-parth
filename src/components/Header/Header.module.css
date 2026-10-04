@@ -108,12 +108,95 @@
 }
 
 .link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   padding: 8px 12px;
   font-family: var(--font-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink-62);
+}
+
+.linkDot {
+  width: 5px;
+  height: 5px;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+}
+
+/* Theme switch: pill with a sliding knob */
+.theme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 38px;
+  min-width: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-pill);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    background var(--t-press) var(--ease),
+    color var(--t-press) var(--ease);
+}
+
+.track {
+  position: relative;
+  width: 22px;
+  height: 12px;
+  border-radius: var(--r-pill);
+  background: rgba(var(--ink-rgb), 0.18);
+}
+
+.knob {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 8px;
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: var(--accent);
+  transition: transform 260ms var(--ease-spring);
+}
+
+.theme[data-theme="dark"] .knob {
+  transform: translateX(10px);
+}
+
+/* Cart: label + count badge */
+.cart {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 38px;
+  min-width: 44px;
+  padding: 0 12px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: color var(--t-press) var(--ease);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: var(--r-pill);
+  background: var(--accent-fill);
+  color: var(--on-accent);
+  font-size: 9.5px;
+  font-variant-numeric: tabular-nums;
 }
 
 .menu {
@@ -155,9 +238,14 @@
     color: var(--ink);
   }
 
-  .menu:hover {
+  .menu:hover,
+  .theme:hover {
     background: var(--ink);
-    color: var(--paper);
+    color: var(--on-ink);
+  }
+
+  .cart:hover {
+    color: var(--accent-text);
   }
 }
 
@@ -172,14 +260,59 @@
     font-size: 19px;
   }
 
-  .menu {
+  .menu,
+  .theme,
+  .cart {
     height: 44px;
+  }
+
+  .menu {
     padding: 0 14px;
+  }
+
+  /* Phones: the switch and cart drop their words; the knob and badge carry them. */
+  .themeLabel,
+  .cartLabel {
+    display: none;
+  }
+
+  .cart {
+    padding: 0;
+  }
+
+  .actions {
+    gap: 2px;
+  }
+
+  .bar {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 479px) {
+  .sub {
+    display: none;
+  }
+}
+
+@media (max-width: 399px) {
+  .menuLabel {
+    display: none;
+  }
+
+  .menu {
+    width: 44px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .theme {
+    padding: 0 10px;
   }
 }
 
 @media (max-width: 359px) {
-  .sub {
-    display: none;
+  .name {
+    font-size: 17px;
   }
 }

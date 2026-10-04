@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { CurtainLink } from "../CurtainLink/CurtainLink";
 import { getProject } from "../../data/projects";
 import { mailto } from "../../data/site";
 import styles from "./MobileActionBar.module.css";
@@ -26,6 +27,9 @@ export function MobileActionBar({ drawerOpen }: { drawerOpen: boolean }) {
     };
   }, [pathname]);
 
+  // The booking pages carry their own primary action.
+  if (pathname.startsWith("/book")) return null;
+
   const hidden = drawerOpen || contactInView;
 
   return (
@@ -38,6 +42,10 @@ export function MobileActionBar({ drawerOpen }: { drawerOpen: boolean }) {
         <a className={styles.cta} href={mailto(`Discuss a build — ${project.brand}`)}>
           Discuss a build →
         </a>
+      ) : pathname === "/services" ? (
+        <CurtainLink className={styles.cta} to="/book" curtainLabel="Book a call">
+          Book a call →
+        </CurtainLink>
       ) : (
         <Link className={styles.cta} to="/#contact">
           Hire me →

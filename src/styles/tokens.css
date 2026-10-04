@@ -1,37 +1,86 @@
-:root {
-  /* colour */
+/*
+ * Two themes share one token set. Dark is the default; light is the original bone palette.
+ * The theme is chosen before first paint by the inline script in index.html
+ * (<html data-theme="dark|light">) and toggled by ThemeToggle.
+ *
+ * Naming: --bone is "page ground" and --surface "raised card" in either theme.
+ * --paper is always the fixed cream used for text on deep / accent surfaces;
+ * --on-ink is text sitting on an --ink fill (flips with the theme).
+ */
+:root,
+:root[data-theme="dark"] {
+  --bone: #131412;
+  --surface: #1B1C1A;
+  --ink: #EEE9E0;
+  --ink-rgb: 238, 233, 224;
+  --on-ink: #131412;
+  --charcoal: #0A0A09;
+  --hover-surface: #191A18;
+  --placeholder: #1F201D;
+  /* Lime accent for dark mode: 14:1 on this ground, so text, fills and dots share it.
+     Anything sitting on it uses dark --on-accent text. */
+  --accent: #C6F24D;
+  --accent-text: #C6F24D;
+  --accent-fill: #C6F24D;
+  --accent-on-dark: #C6F24D;
+  --on-accent: #131412;
+  --on-accent-rgb: 19, 20, 18;
+  --shadow-card: 0 18px 40px -28px rgba(0, 0, 0, 0.9);
+  color-scheme: dark;
+}
+
+:root[data-theme="light"] {
   --bone: #F2EDE4;
-  --paper: #F7F3EC;
+  --surface: #F7F3EC;
   --ink: #1B1D20;
+  --ink-rgb: 27, 29, 32;
+  --on-ink: #F7F3EC;
   --charcoal: #121311;
-  --accent: #2B31C9;
-  --status: #3F7A55;
   --hover-surface: #EDE6DB;
   --placeholder: #E8E1D5;
+  --accent: #E4572E;
+  /* #E4572E is 3.4:1 on bone — small accent text uses a deepened tone (4.8:1). */
+  --accent-text: #B83E18;
+  /* Fill behind small cream text: #E4572E gives cream 3.9:1, this gives 4.6:1. */
+  --accent-fill: #C4401A;
+  /* Accent text on the charcoal sections (6.4:1). */
+  --accent-on-dark: #F0764F;
+  --on-accent: #F7F3EC;
+  --on-accent-rgb: 247, 243, 236;
+  --shadow-card: 0 18px 40px -28px rgba(27, 29, 32, 0.5);
+  color-scheme: light;
+}
 
-  --ink-85: rgba(27, 29, 32, 0.85);
-  --ink-82: rgba(27, 29, 32, 0.82);
-  --ink-80: rgba(27, 29, 32, 0.80);
-  --ink-78: rgba(27, 29, 32, 0.78);
-  --ink-75: rgba(27, 29, 32, 0.75);
-  --ink-70: rgba(27, 29, 32, 0.70);
-  --ink-66: rgba(27, 29, 32, 0.66);
-  /* Contrast: ink below .62 fails 4.5:1 on bone (.55 = 3.65:1, .45 = 2.75:1).
-     Every label tier from .62 down is raised to .66 (5.1:1). Names are kept so
-     each component still reads like the handoff. */
-  --ink-62: rgba(27, 29, 32, 0.66);
-  --ink-55: rgba(27, 29, 32, 0.66);
-  --ink-50: rgba(27, 29, 32, 0.66);
-  --ink-45: rgba(27, 29, 32, 0.66);
-  --ink-40: rgba(27, 29, 32, 0.66);
-  --rule: rgba(27, 29, 32, 0.14);
-  --rule-strong: rgba(27, 29, 32, 0.20);
-  --rule-soft: rgba(27, 29, 32, 0.08);
-  --rule-mid: rgba(27, 29, 32, 0.12);
-  --rule-card: rgba(27, 29, 32, 0.16);
-  --rule-hover: rgba(27, 29, 32, 0.50);
+:root {
+  /* colour — fixed across themes */
+  --paper: #F7F3EC;
+  --status: #3F7A55;
+
+  --ink-85: rgba(var(--ink-rgb), 0.85);
+  --ink-82: rgba(var(--ink-rgb), 0.82);
+  --ink-80: rgba(var(--ink-rgb), 0.80);
+  --ink-78: rgba(var(--ink-rgb), 0.78);
+  --ink-75: rgba(var(--ink-rgb), 0.75);
+  --ink-70: rgba(var(--ink-rgb), 0.70);
+  --ink-66: rgba(var(--ink-rgb), 0.66);
+  /* Contrast: on bone, ink below .62 fails 4.5:1 (.55 = 3.65:1, .45 = 2.75:1).
+     Every label tier from .62 down is raised to .66 (5.1:1 light, 7:1 dark). Names are
+     kept so each component still reads like the handoff. */
+  --ink-62: rgba(var(--ink-rgb), 0.66);
+  --ink-55: rgba(var(--ink-rgb), 0.66);
+  --ink-50: rgba(var(--ink-rgb), 0.66);
+  --ink-45: rgba(var(--ink-rgb), 0.66);
+  --ink-40: rgba(var(--ink-rgb), 0.66);
+  --rule: rgba(var(--ink-rgb), 0.14);
+  --rule-strong: rgba(var(--ink-rgb), 0.20);
+  --rule-soft: rgba(var(--ink-rgb), 0.08);
+  --rule-mid: rgba(var(--ink-rgb), 0.12);
+  --rule-card: rgba(var(--ink-rgb), 0.16);
+  --rule-chip: rgba(var(--ink-rgb), 0.22);
+  --rule-hover: rgba(var(--ink-rgb), 0.50);
 
   /* On charcoal .50 passes (4.9:1); .45 (4.2:1) and .40 (3.6:1) are raised to .55 (5.7:1). */
+  --paper-75: rgba(247, 243, 236, 0.75);
   --paper-55: rgba(247, 243, 236, 0.55);
   --paper-50: rgba(247, 243, 236, 0.50);
   --paper-45: rgba(247, 243, 236, 0.55);
@@ -40,8 +89,7 @@
   --rule-inv-strong: rgba(247, 243, 236, 0.18);
   --rule-inv-mid: rgba(247, 243, 236, 0.12);
   --rule-inv-soft: rgba(247, 243, 236, 0.10);
-  /* Accent on charcoal is 2.1:1; text on inverted surfaces uses a lifted accent (7.0:1). */
-  --accent-on-dark: #8F95FF;
+  --scrim: rgba(10, 10, 9, 0.5);
 
   /* type */
   --font-display: "Syne", sans-serif;
@@ -63,13 +111,14 @@
   /* motion */
   --ease: cubic-bezier(0.2, 0, 0, 1);
   --ease-exit: cubic-bezier(0.4, 0, 0.2, 1);
+  /* Long, soft settle used by reveals, the page curtain and the cart drawer. */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
   --t-press: 120ms;
   --t-ui: 200ms;
-  --t-reveal: 420ms;
+  --t-reveal: 950ms;
 
-  --shadow-card: 0 18px 40px -28px rgba(27, 29, 32, 0.5);
-
-  --placeholder-stripes: repeating-linear-gradient(135deg, rgba(27, 29, 32, 0.055) 0 1px, transparent 1px 7px);
+  --placeholder-stripes: repeating-linear-gradient(135deg, rgba(var(--ink-rgb), 0.055) 0 1px, transparent 1px 7px);
 }
 
 @media (max-width: 899px) {

@@ -2,7 +2,7 @@
   flex: 0 0 auto;
   height: 38px;
   padding: 0 16px;
-  border: 1px solid rgba(27, 29, 32, 0.22);
+  border: 1px solid var(--rule-chip);
   border-radius: var(--r);
   background: transparent;
   color: var(--ink);
@@ -20,7 +20,7 @@
 .swatch[aria-pressed="true"] {
   background: var(--ink);
   border-color: var(--ink);
-  color: var(--paper);
+  color: var(--on-ink);
 }
 
 @media (hover: hover) {

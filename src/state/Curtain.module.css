@@ -1,0 +1,20 @@
+.curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: flex-end;
+  padding: var(--gutter);
+  background: var(--charcoal);
+  pointer-events: none;
+  transform: translateY(100%);
+}
+
+.label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(48px, 10vw, 160px);
+  line-height: 0.85;
+  letter-spacing: -0.03em;
+  color: var(--paper);
+}

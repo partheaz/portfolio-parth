@@ -82,7 +82,7 @@
   font-size: 10px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent);
+  color: var(--accent-text);
 }
 
 .shot {
@@ -96,27 +96,58 @@
   }
 }
 
-.also {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding-top: 28px;
-  font-family: var(--font-mono);
-  font-size: 9.5px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+/* "See all projects" — a full-width link row under the featured list. */
+.all {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 20px;
+  min-height: 44px;
+  padding: 24px 0;
+  border-top: 1px solid var(--rule-strong);
+  border-bottom: 1px solid var(--rule-strong);
+  color: var(--ink);
+  transition: padding-left var(--t-ui) var(--ease);
 }
 
-.alsoLabel {
-  padding-right: 6px;
+.allLabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--ink-45);
 }
 
-.alsoList {
-  color: var(--ink-70);
+.allTitle {
+  display: block;
+  padding-top: 10px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(28px, 5vw, 62px);
+  line-height: 1;
+  transition: color var(--t-ui) var(--ease);
 }
 
-/* Desktop: title line, then text (left) + 16:10 image (right). */
+.allArrow {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--accent-text);
+}
+
+@media (hover: hover) {
+  .all:hover {
+    padding-left: 12px;
+    color: var(--ink);
+  }
+
+  .all:hover .allTitle {
+    color: var(--accent-text);
+  }
+}
+
+/* Desktop: title line, then description · stack · CTA on one baseline row.
+   The shot is hidden — it follows the pointer instead (PointerFollower). */
 @media (min-width: 900px) {
   .item + .item .row {
     border-top: 0;
@@ -135,12 +166,10 @@
   }
 
   .rowInner {
-    grid-template-columns: 1fr 1fr;
     grid-template-areas:
-      "title title"
-      "text shot";
+      "title"
+      "text";
     gap: 20px;
-    align-items: start;
   }
 
   .title {
@@ -155,6 +184,15 @@
   .brand {
     font-size: clamp(30px, 5.4vw, 74px);
     line-height: 0.95;
+    transition: color var(--t-ui) var(--ease);
+  }
+
+  .text {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) auto;
+    gap: 24px;
+    align-items: baseline;
+    padding-left: 38px;
   }
 
   .line {
@@ -162,20 +200,18 @@
     font-size: 16px;
   }
 
-  .stack {
-    padding-top: 12px;
-  }
-
+  .stack,
   .cta {
-    padding-top: 16px;
+    padding-top: 0;
   }
 
   .shot {
-    aspect-ratio: 16 / 10;
+    display: none;
   }
 
-  .also {
-    font-size: 9px;
+  .all {
+    margin-top: clamp(24px, 3vw, 40px);
+    padding: clamp(24px, 3vw, 40px) 0;
   }
 }
 
@@ -184,5 +220,9 @@
     padding-left: 12px;
     border-bottom-color: var(--rule-hover);
     color: var(--ink);
+  }
+
+  .row:hover .brand {
+    color: var(--accent-text);
   }
 }

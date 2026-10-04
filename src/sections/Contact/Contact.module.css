@@ -1,5 +1,5 @@
+/* Follows the accent services band directly, so no top margin. */
 .section {
-  margin-top: var(--section-pt);
   padding: 64px var(--gutter) 40px;
   background: var(--charcoal);
   color: var(--paper);
@@ -24,6 +24,14 @@
   text-wrap: pretty;
 }
 
+.intro {
+  max-width: 52ch;
+  margin-top: 24px;
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.55;
+  color: var(--paper-75);
+}
+
 .ctaRow {
   display: flex;
   flex-direction: column;
@@ -32,9 +40,31 @@
   padding: clamp(32px, 4vw, 52px) 0;
 }
 
+.magnet {
+  display: flex;
+}
+
 .cta {
   width: 100%;
   justify-content: space-between;
+}
+
+.call {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  padding: 0 24px;
+  border: 1px solid rgba(247, 243, 236, 0.3);
+  border-radius: var(--r);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    border-color 140ms var(--ease),
+    background 140ms var(--ease);
 }
 
 .helper {
@@ -73,6 +103,12 @@
 }
 
 @media (hover: hover) {
+  .call:hover {
+    border-color: var(--paper);
+    background: rgba(247, 243, 236, 0.08);
+    color: var(--paper);
+  }
+
   .link:hover {
     color: var(--accent-on-dark);
   }
@@ -93,10 +129,22 @@
     font-size: clamp(38px, 7.6vw, 108px);
   }
 
-  .ctaRow {
+  .intro {
+  max-width: 52ch;
+  margin-top: 24px;
+  font-size: clamp(16px, 1.4vw, 19px);
+  line-height: 1.55;
+  color: var(--paper-75);
+}
+
+.ctaRow {
     flex-direction: row;
     flex-wrap: wrap;
     align-items: center;
+  }
+
+  .magnet {
+    display: inline-flex;
   }
 
   .cta {

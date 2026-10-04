@@ -1,28 +1,34 @@
-import { alsoShipped } from "../../data/site";
-import { projects } from "../../data/projects";
+import { featuredProjects, projects } from "../../data/projects";
 import { SectionHeader } from "../../components/SectionHeader/SectionHeader";
-import { CursorDot } from "../../components/CursorDot/CursorDot";
-import { FINE_POINTER, REDUCED_MOTION, useMediaQuery } from "../../hooks/useMediaQuery";
+import { CurtainLink } from "../../components/CurtainLink/CurtainLink";
 import { WorkRow } from "./WorkRow";
 import styles from "./Work.module.css";
 
-export function Work() {
-  const finePointer = useMediaQuery(FINE_POINTER);
-  const reducedMotion = useMediaQuery(REDUCED_MOTION);
+const pad = (n: number) => String(n).padStart(2, "0");
 
+/** Homepage: a short list of featured projects; the full list lives on /work. */
+export function Work() {
   return (
     <section id="work" className={styles.section} aria-labelledby="work-title">
-      <SectionHeader id="work-title" label="Selected work" meta={`${String(projects.length).padStart(2, "0")} of 15+`} />
+      <SectionHeader
+        id="work-title"
+        label="Featured work"
+        meta={`${pad(featuredProjects.length)} of ${pad(projects.length)}`}
+      />
       <ol className={styles.list}>
-        {projects.map((p) => (
-          <WorkRow key={p.slug} project={p} />
+        {featuredProjects.map((p) => (
+          <WorkRow key={p.slug} project={p} index={projects.indexOf(p)} />
         ))}
       </ol>
-      <p className={styles.also}>
-        <span className={styles.alsoLabel}>Also shipped —</span>
-        <span className={styles.alsoList}>{alsoShipped}</span>
-      </p>
-      {finePointer && !reducedMotion && <CursorDot scopeId="work" />}
+      <CurtainLink to="/work" curtainLabel="All work" className={styles.all}>
+        <span>
+          <span className={styles.allLabel}>Themes · Apps · Migrations · CRO</span>
+          <span className={styles.allTitle}>See all projects</span>
+        </span>
+        <span className={styles.allArrow} aria-hidden="true">
+          →
+        </span>
+      </CurtainLink>
     </section>
   );
 }

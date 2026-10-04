@@ -2,7 +2,14 @@
 <!-- TODO(owner): replace example.com with the production domain. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://example.com/</loc></url>
+  <url><loc>https://example.com/work</loc></url>
+  <url><loc>https://example.com/services</loc></url>
+  <url><loc>https://example.com/work/intervel</loc></url>
+  <url><loc>https://example.com/work/aerospray</loc></url>
+  <url><loc>https://example.com/work/silent-wake-up</loc></url>
   <url><loc>https://example.com/work/100-percent</loc></url>
+  <url><loc>https://example.com/work/masienda</loc></url>
+  <url><loc>https://example.com/work/criquet-shirts</loc></url>
   <url><loc>https://example.com/work/iron-displays</loc></url>
   <url><loc>https://example.com/work/graduation-world</loc></url>
   <url><loc>https://example.com/work/catalog2cart</loc></url>

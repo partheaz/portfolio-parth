@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { defaultStatement, variants } from "../../data/variants";
 import { Swatch } from "../../components/Chip/Chip";
+import { SplitHeading } from "../../components/SplitHeading/SplitHeading";
 import { DESKTOP, useMediaQuery } from "../../hooks/useMediaQuery";
 import { DeveloperCard } from "./DeveloperCard";
 import { HeroCarousel } from "./HeroCarousel";
@@ -21,9 +22,7 @@ export function Hero() {
         </p>
         <p className={styles.meta}>4+ yrs · Ahmedabad</p>
         <h1 id="hero-title" className={styles.title}>
-          Shopify
-          <br />
-          Developer
+          <SplitHeading lines={["Shopify", "Developer"]} />
         </h1>
       </div>
 

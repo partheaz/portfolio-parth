@@ -1,4 +1,4 @@
-import { about } from "../../data/site";
+import { about, offTheClock } from "../../data/site";
 import { portrait } from "../../data/images";
 import { ImageSlot } from "../../components/ImageSlot/ImageSlot";
 import { SectionHeader } from "../../components/SectionHeader/SectionHeader";
@@ -31,6 +31,17 @@ export function About() {
                 {para}
               </p>
             ))}
+          </div>
+          <div className={styles.offClock} data-reveal="text" ref={revealRef}>
+            <h3 className={styles.offLabel}>Off the clock</h3>
+            <ul className={styles.offList}>
+              {offTheClock.map((h) => (
+                <li key={h.what} className={styles.offItem}>
+                  <span className={styles.offWhat}>{h.what}</span>
+                  <span className={styles.offNote}>{h.note}</span>
+                </li>
+              ))}
+            </ul>
           </div>
           <ExperienceTable />
         </div>

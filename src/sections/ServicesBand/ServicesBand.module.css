@@ -1,0 +1,115 @@
+.band {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(28px, 4vw, 48px);
+  align-items: end;
+  margin-top: var(--section-pt);
+  padding: clamp(56px, 8vw, 120px) var(--gutter);
+  background: var(--accent-fill);
+  color: var(--on-accent);
+}
+
+.kicker {
+  padding-bottom: 24px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--on-accent);
+}
+
+.title {
+  max-width: 16ch;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(36px, 5.8vw, 88px);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  text-wrap: pretty;
+}
+
+.intro {
+  margin: 24px 0 32px;
+  max-width: 46ch;
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.magnet {
+  display: inline-flex;
+}
+
+.cta {
+  display: inline-flex;
+  align-items: center;
+  height: 60px;
+  padding: 0 28px;
+  border-radius: var(--r);
+  background: var(--paper);
+  color: #121311;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition:
+    background 140ms var(--ease),
+    color 140ms var(--ease),
+    transform var(--t-press) var(--ease);
+}
+
+.cta:active {
+  transform: scale(0.985);
+}
+
+.prices {
+  border-top: 1px solid rgba(var(--on-accent-rgb), 0.35);
+}
+
+.price {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(var(--on-accent-rgb), 0.25);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (hover: hover) {
+  .cta:hover {
+    background: var(--charcoal);
+    color: var(--paper);
+  }
+}
+
+@media (max-width: 899px) {
+  .cta {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .magnet {
+    display: flex;
+  }
+}
+
+@media (min-width: 900px) {
+  .band {
+    grid-template-columns: repeat(12, 1fr);
+  }
+
+  .left {
+    grid-column: span 7;
+  }
+
+  .prices {
+    grid-column: 9 / span 4;
+  }
+}
+
+.band :focus-visible {
+  outline-color: var(--on-accent);
+}

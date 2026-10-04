@@ -1,0 +1,58 @@
+.slot {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--rule);
+  border-radius: var(--r);
+  background-color: var(--placeholder);
+  background-image: var(--placeholder-stripes);
+}
+
+.video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.caption {
+  position: absolute;
+  left: 12px;
+  bottom: 12px;
+  max-width: calc(100% - 120px);
+  padding: 6px 8px;
+  border-radius: var(--r);
+  background: rgba(10, 10, 9, 0.6);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.toggle {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: var(--r);
+  background: rgba(10, 10, 9, 0.6);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background var(--t-press) var(--ease);
+}
+
+@media (hover: hover) {
+  .toggle:hover {
+    background: rgba(10, 10, 9, 0.85);
+  }
+}
