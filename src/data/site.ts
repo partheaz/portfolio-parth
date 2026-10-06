@@ -11,6 +11,11 @@ export const site = {
   linkedin: "https://www.linkedin.com/in/parth-pandey-852a42192/",
   github: "https://github.com/partheaz/",
   resume: "/resume-parth.pdf",
+  /**
+   * Calendly scheduling link (public, not a secret), e.g. "https://calendly.com/you/30min".
+   * Set availability to Asia/Kathmandu in Calendly. Empty: /book falls back to the email request form.
+   */
+  calendly: "https://calendly.com/parthpandey678/30min",
 };
 
 export const mailto = (subject?: string) =>

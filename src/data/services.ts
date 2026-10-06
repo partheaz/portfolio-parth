@@ -1,3 +1,5 @@
+import { locale } from "./locale";
+
 export type Tier = { label: string; price: number; time: string };
 
 export type Service = {
@@ -58,7 +60,14 @@ export const availability = {
   slots: "Freelance · 2 slots open this quarter",
 };
 
-export const formatPrice = (n: number) => "$" + n.toLocaleString("en-US");
+const priceFormat = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: locale.priceCurrency,
+  maximumFractionDigits: 0,
+});
+
+/** Prices are quoted in USD for international clients ("$1,500"). */
+export const formatPrice = (n: number) => priceFormat.format(n);
 
 export const getService = (id: string) => services.find((s) => s.id === id);
 

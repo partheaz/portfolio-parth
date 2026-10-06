@@ -1,5 +1,6 @@
 import { useEffect, useRef, type Ref } from "react";
 import { Link } from "react-router-dom";
+import { locale, utcOffsetLabel } from "../../data/locale";
 import { sections } from "../../data/site";
 import { prefersReducedMotion } from "../../hooks/useMediaQuery";
 import { useTheme } from "../../hooks/useTheme";
@@ -41,7 +42,9 @@ export function Header({ drawerOpen, onMenu, menuRef, cartRef }: Props) {
           <span className={styles.long}>Open to Shopify / e-commerce roles</span>
           <span className={styles.short}>Open to Shopify roles</span>
         </p>
-        <span className={styles.tz}>IST · UTC+5:30</span>
+        <span className={styles.tz}>
+          {locale.tzLabel} · {utcOffsetLabel()}
+        </span>
       </div>
 
       <div className={styles.bar}>

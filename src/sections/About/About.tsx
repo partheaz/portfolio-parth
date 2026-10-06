@@ -1,3 +1,4 @@
+import { locale } from "../../data/locale";
 import { about, offTheClock } from "../../data/site";
 import { portrait } from "../../data/images";
 import { ImageSlot } from "../../components/ImageSlot/ImageSlot";
@@ -9,7 +10,7 @@ import styles from "./About.module.css";
 export function About() {
   return (
     <section id="about" className={styles.section} aria-labelledby="about-title">
-      <SectionHeader id="about-title" label="About" meta="Ahmedabad, IN" />
+      <SectionHeader id="about-title" label="About" meta={`${locale.city}, ${locale.countryCode}`} />
       <div className={styles.grid}>
         <div className={styles.portraitCell}>
           <ImageSlot

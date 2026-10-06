@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { locale } from "../../data/locale";
 import { defaultStatement, variants } from "../../data/variants";
 import { Swatch } from "../../components/Chip/Chip";
 import { SplitHeading } from "../../components/SplitHeading/SplitHeading";
@@ -20,7 +21,7 @@ export function Hero() {
           <span className={styles.eyebrowRule} aria-hidden="true" />
           <span>4+ yrs</span>
         </p>
-        <p className={styles.meta}>4+ yrs · Ahmedabad</p>
+        <p className={styles.meta}>4+ yrs · {locale.city}</p>
         <h1 id="hero-title" className={styles.title}>
           <SplitHeading lines={["Shopify", "Developer"]} />
         </h1>

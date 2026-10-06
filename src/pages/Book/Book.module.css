@@ -446,7 +446,8 @@
     grid-template-columns: repeat(12, 1fr);
   }
 
-  .form {
+  .form,
+  .slot {
     grid-column: span 7;
   }
 
@@ -454,5 +455,38 @@
     grid-column: 9 / span 4;
     position: sticky;
     top: calc(var(--header-h) + 20px);
+  }
+}
+
+/* Calendly inline embed */
+.slot {
+  min-width: 0;
+}
+
+h2.legend {
+  margin: 0;
+  font-weight: inherit;
+}
+
+.calendly {
+  display: block;
+  width: 100%;
+  height: 860px;
+  margin-top: 20px;
+  border: 1px solid var(--rule-card);
+  border-radius: var(--r);
+  background: var(--surface);
+  /* Calendly's page is light-scheme. A mismatch with the site's dark scheme makes the
+     browser paint an opaque white backdrop behind the frame; matching keeps it transparent. */
+  color-scheme: light;
+}
+
+.calendly + .fine {
+  margin-top: 12px;
+}
+
+@media (min-width: 900px) {
+  .calendly {
+    height: 720px;
   }
 }

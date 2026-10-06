@@ -22,13 +22,19 @@ npm run preview   # serve the production build
 - `/work`: every project, filterable by type (the homepage shows only `featured` ones)
 - `/work/:slug`: case studies (`100-percent`, `masienda`, `iron-displays`, `graduation-world`, `catalog2cart`, `almsthre`). Unknown slugs redirect to `/`.
 - `/services`: fixed-scope services with a services "cart"
-- `/book`, `/book/sent`: consultation request (composes an email; there is no booking backend)
+- `/book`, `/book/sent`: consultation booking. With `site.calendly` set, `/book` embeds Calendly inline; without it, it falls back to a slot picker that composes an email (there is no booking backend)
 
 Deep links survive a reload through `vercel.json` (Vercel) and `public/_redirects` (Netlify).
 
 ## Content
 
 All copy lives in `src/data/`: projects, capabilities, experience, hero variants, plus site details and contact links.
+
+## Location, timezone and Calendly
+
+Parth works from Kathmandu, Nepal. `src/data/locale.ts` is the one place that says so: the `Asia/Kathmandu` timezone, the `NPT` label, `en-NP`, and the currencies (NPR locally; service prices stay in USD). Every time on the site is a real instant formatted through `Intl` with that timezone, so the +05:45 offset comes from the browser's timezone database and is never typed in. `index.html`'s JSON-LD repeats the city and country.
+
+To turn on Calendly, set `calendly` in `src/data/site.ts` to the event's public link (for example `https://calendly.com/you/30min`). It's a public URL, not a secret, so no env vars or API token are involved. In Calendly itself, set **Account → Time zone** and the event's availability to **Asia/Kathmandu**. Visitors then see slots converted to their own time zone. The embed is a plain iframe, with no Calendly script on the page. It prefills the first custom question with the services in the cart, and it clears the cart once a booking is made.
 
 ## Images
 
