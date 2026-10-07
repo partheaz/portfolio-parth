@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useMemo, useState, type ReactNode } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { currency, serviceItem, track } from "../analytics";
 import { formatPrice, getService } from "../data/services";
 import { CartContext, type CartItem, type CartLine, type CartValue } from "./useCart";
 
@@ -22,6 +23,8 @@ const consultation: CartLine = { id: null, name: "Consultation call", detail: "3
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>(load);
   const [isOpen, setOpen] = useState(false);
+  const itemsRef = useRef(items);
+  itemsRef.current = items;
 
   useEffect(() => {
     try {
@@ -34,10 +37,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const open = useCallback(() => setOpen(true), []);
   const close = useCallback(() => setOpen(false), []);
   const add = useCallback((id: string, tier: number) => {
+    const item = serviceItem(id, tier);
+    if (item) track("add_to_cart", { currency, value: item.price, items: [item] });
     setItems((prev) => prev.filter((c) => c.id !== id).concat({ id, tier }));
     setOpen(true);
   }, []);
-  const remove = useCallback((id: string) => setItems((prev) => prev.filter((c) => c.id !== id)), []);
+  const remove = useCallback((id: string) => {
+    const item = serviceItem(id, itemsRef.current.find((c) => c.id === id)?.tier ?? 0);
+    if (item) track("remove_from_cart", { currency, value: item.price, items: [item] });
+    setItems((prev) => prev.filter((c) => c.id !== id));
+  }, []);
   const clear = useCallback(() => setItems([]), []);
 
   const value = useMemo<CartValue>(() => {

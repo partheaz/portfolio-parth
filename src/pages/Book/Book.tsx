@@ -1,4 +1,5 @@
-import { useMemo, useState, type FormEvent } from "react";
+import { useCallback, useMemo, useState, type FormEvent } from "react";
+import { currency, serviceItem, track } from "../../analytics";
 import { locale } from "../../data/locale";
 import { formatPrice } from "../../data/services";
 import { site } from "../../data/site";
@@ -21,6 +22,19 @@ export default function Book() {
 
   const localSlot = day >= 0 && time >= 0 ? formatSlotLocal(zonedInstant(days[day], TIMES[time])) : "";
 
+  /** GA4 "generate_lead": a booking was made, with the services that were in the cart. */
+  const trackLead = useCallback(
+    (method: "calendly" | "email") => {
+      const items = cart.items.flatMap((c) => serviceItem(c.id, c.tier) ?? []);
+      track("generate_lead", { method, currency, value: items.reduce((a, i) => a + i.price, 0), items });
+    },
+    [cart.items],
+  );
+  const onScheduled = useCallback(() => {
+    trackLead("calendly");
+    cart.clear();
+  }, [trackLead, cart]);
+
   const canBook = !!(form.name.trim() && /\S+@\S+\.\S+/.test(form.email) && day >= 0 && time >= 0);
   const set = (k: keyof typeof form) => (e: { target: { value: string } }) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -29,6 +43,7 @@ export default function Book() {
     e.preventDefault();
     if (!canBook) return;
     const booking = createBooking({ ...form, day: days[day], time: TIMES[time], total: cart.total, lines: cart.lines });
+    trackLead("email");
     window.location.href = booking.mailto;
     cart.clear();
     go("/book/sent", "Almost there", { state: booking });
@@ -47,7 +62,7 @@ export default function Book() {
 
       <div className={styles.layout}>
         {site.calendly ? (
-          <CalendlyEmbed lines={cart.lines} onScheduled={cart.clear} />
+          <CalendlyEmbed lines={cart.lines} onScheduled={onScheduled} />
         ) : (
           <form className={styles.form} onSubmit={submit} noValidate>
             <fieldset className={styles.group}>
