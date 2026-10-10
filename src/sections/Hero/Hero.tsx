@@ -5,7 +5,6 @@ import { Swatch } from "../../components/Chip/Chip";
 import { SplitHeading } from "../../components/SplitHeading/SplitHeading";
 import { DESKTOP, useMediaQuery } from "../../hooks/useMediaQuery";
 import { DeveloperCard } from "./DeveloperCard";
-import { HeroCarousel } from "./HeroCarousel";
 import styles from "./Hero.module.css";
 
 export function Hero() {
@@ -42,7 +41,6 @@ export function Hero() {
         </div>
       </div>
 
-      {!isDesktop && <HeroCarousel />}
     </section>
   );
 }

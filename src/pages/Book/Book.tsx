@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState, type FormEvent } from "react";
 import { currency, serviceItem, track } from "../../analytics";
 import { locale } from "../../data/locale";
 import { formatPrice } from "../../data/services";
+import { bookMeta } from "../../data/seo";
 import { site } from "../../data/site";
 import { CurtainLink } from "../../components/CurtainLink/CurtainLink";
 import { useDocumentMeta } from "../../hooks/useDocumentMeta";
@@ -12,7 +13,7 @@ import { CalendlyEmbed } from "./CalendlyEmbed";
 import styles from "./Book.module.css";
 
 export default function Book() {
-  useDocumentMeta(`Book a consultation · ${site.name}`, "Book a free 30-minute call about your Shopify store.");
+  useDocumentMeta(bookMeta);
   const cart = useCart();
   const go = useCurtain();
   const days = useMemo(() => nextWeekdays(), []);

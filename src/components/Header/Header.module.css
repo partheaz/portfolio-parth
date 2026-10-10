@@ -199,6 +199,16 @@
   font-variant-numeric: tabular-nums;
 }
 
+.cartIcon {
+  display: none;
+  width: 22px;
+  height: 22px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+}
+
 .menu {
   display: flex;
   align-items: center;
@@ -270,14 +280,30 @@
     padding: 0 14px;
   }
 
-  /* Phones: the switch and cart drop their words; the knob and badge carry them. */
-  .themeLabel,
+  /* Phones: the theme switch moves into the menu drawer, and the cart becomes a bag icon with the count on its corner. */
+  .theme,
   .cartLabel {
     display: none;
   }
 
   .cart {
+    position: relative;
+    width: 44px;
     padding: 0;
+  }
+
+  .cartIcon {
+    display: block;
+  }
+
+  .cart .badge {
+    position: absolute;
+    top: 3px;
+    right: 1px;
+    min-width: 16px;
+    height: 16px;
+    padding: 0 4px;
+    font-size: 8.5px;
   }
 
   .actions {
@@ -304,10 +330,6 @@
     width: 44px;
     justify-content: center;
     padding: 0;
-  }
-
-  .theme {
-    padding: 0 10px;
   }
 }
 

@@ -1,4 +1,5 @@
 import { Navigate, useLocation } from "react-router-dom";
+import { bookSentMeta } from "../../data/seo";
 import { site } from "../../data/site";
 import { CurtainLink } from "../../components/CurtainLink/CurtainLink";
 import { useDocumentMeta } from "../../hooks/useDocumentMeta";
@@ -6,7 +7,7 @@ import type { Booking } from "./booking";
 import styles from "./Book.module.css";
 
 export default function BookSent() {
-  useDocumentMeta(`Request ready · ${site.name}`, "Your consultation request is ready to send.");
+  useDocumentMeta(bookSentMeta);
   const booking = useLocation().state as Booking | null;
   if (!booking?.ref) return <Navigate to="/book" replace />;
 

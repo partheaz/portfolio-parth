@@ -2,6 +2,7 @@ import { useRef, type CSSProperties, type RefObject } from "react";
 import { Link } from "react-router-dom";
 import { mailto, sections, site } from "../../data/site";
 import { useModal } from "../../hooks/useModal";
+import { useTheme } from "../../hooks/useTheme";
 import styles from "./Drawer.module.css";
 
 type Props = {
@@ -16,6 +17,7 @@ type Props = {
 export function Drawer({ open, onClose, returnFocusRef, pageRef }: Props) {
   const panelRef = useRef<HTMLDivElement>(null);
   const closeRef = useRef<HTMLButtonElement>(null);
+  const { theme, toggle } = useTheme();
 
   useModal({ open, onClose, panelRef, initialFocusRef: closeRef, returnFocusRef, pageRef });
 
@@ -69,6 +71,23 @@ export function Drawer({ open, onClose, returnFocusRef, pageRef }: Props) {
             → Résumé
           </a>
         </div>
+
+        <button
+          type="button"
+          className={styles.theme}
+          onClick={toggle}
+          role="switch"
+          aria-checked={theme === "dark"}
+          data-theme={theme}
+        >
+          <span>Dark theme</span>
+          <span className={styles.themeState} aria-hidden="true">
+            {theme === "dark" ? "On" : "Off"}
+            <span className={styles.track}>
+              <span className={styles.knob} />
+            </span>
+          </span>
+        </button>
 
         <div className={styles.foot}>
           <span className={styles.footLabel}>1 developer</span>

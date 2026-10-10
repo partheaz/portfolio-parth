@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { availability, formatPrice, services, type Service } from "../../data/services";
-import { site } from "../../data/site";
 import { CurtainLink } from "../../components/CurtainLink/CurtainLink";
 import { SplitHeading } from "../../components/SplitHeading/SplitHeading";
+import { servicesMeta } from "../../data/seo";
 import { useDocumentMeta } from "../../hooks/useDocumentMeta";
 import { useMagnetic } from "../../hooks/useMagnetic";
 import { revealRef } from "../../hooks/useReveal";
@@ -12,10 +12,7 @@ import styles from "./Services.module.css";
 const steps = ["Add services to your cart", "Book a free 30-minute call", "Fixed quote within 48 hours"];
 
 export default function Services() {
-  useDocumentMeta(
-    `Services — Shopify themes, apps and migrations · ${site.name}`,
-    "Six fixed-scope Shopify services with starting prices: store audit, theme feature, custom theme, custom app, migration and retainer. Book a free 30-minute call for a fixed quote.",
-  );
+  useDocumentMeta(servicesMeta);
   const magnetRef = useMagnetic<HTMLSpanElement>();
 
   return (

@@ -99,6 +99,10 @@ export function Header({ drawerOpen, onMenu, menuRef, cartRef }: Props) {
             <span className={styles.cartLabel} aria-hidden="true">
               Cart
             </span>
+            <svg className={styles.cartIcon} viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 8h14l-1.2 12H6.2L5 8Z" />
+              <path d="M9 10V6.5a3 3 0 0 1 6 0V10" />
+            </svg>
             <span ref={badgeRef} className={styles.badge} aria-hidden="true">
               {count}
             </span>

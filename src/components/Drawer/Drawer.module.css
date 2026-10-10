@@ -126,6 +126,58 @@
   color: var(--paper-50);
 }
 
+/* Theme switch: a full-width row with a sliding knob */
+.theme {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  width: 100%;
+  min-height: 52px;
+  margin-top: 12px;
+  border-top: 1px solid var(--rule-inv-soft);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--paper-50);
+  text-align: left;
+  transition: color var(--t-press) var(--ease);
+}
+
+.themeState {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--paper);
+}
+
+.track {
+  position: relative;
+  width: 36px;
+  height: 20px;
+  border-radius: var(--r-pill);
+  border: 1px solid var(--rule-inv-strong);
+}
+
+.knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 12px;
+  height: 12px;
+  border-radius: var(--r-pill);
+  background: var(--paper-50);
+  transition:
+    transform 260ms var(--ease-spring),
+    background var(--t-press) var(--ease);
+}
+
+.theme[data-theme="dark"] .knob {
+  transform: translateX(16px);
+  background: var(--accent-on-dark);
+}
+
 .foot {
   display: flex;
   align-items: center;
@@ -165,7 +217,8 @@
 
 @media (hover: hover) {
   .close:hover,
-  .secondaryLink:hover {
+  .secondaryLink:hover,
+  .theme:hover {
     color: var(--paper);
   }
 

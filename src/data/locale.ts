@@ -4,7 +4,7 @@
  * offsets are never hardcoded, so Nepal's +05:45 (or any future change to it)
  * comes from the browser's timezone database.
  *
- * index.html's JSON-LD repeats the city and country code; keep it in step.
+ * The structured data in src/data/seo.ts reads the city and country code from here.
  */
 export const locale = {
   city: "Kathmandu",

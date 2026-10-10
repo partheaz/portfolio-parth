@@ -36,6 +36,21 @@ Parth works from Kathmandu, Nepal. `src/data/locale.ts` is the one place that sa
 
 To turn on Calendly, set `calendly` in `src/data/site.ts` to the event's public link (for example `https://calendly.com/you/30min`). It's a public URL, not a secret, so no env vars or API token are involved. In Calendly itself, set **Account → Time zone** and the event's availability to **Asia/Kathmandu**. Visitors then see slots converted to their own time zone. The embed is a plain iframe, with no Calendly script on the page. It prefills the first custom question with the services in the cart, and it clears the cart once a booking is made.
 
+## Analytics
+
+Google Analytics 4 loads from `index.html`. `src/analytics.ts` adds these events on top of GA's automatic page views, outbound links and PDF downloads:
+
+- `add_to_cart` / `remove_from_cart`: a service added to or removed from the services cart (GA4 ecommerce items, priced in USD)
+- `cta_click`: any link into `/services` or `/book`, with `link_text`, `link_url` and `page_path`
+- `email_click`: any email link, with `link_text` and `page_path`
+- `generate_lead`: a booking made through Calendly or the email form, with the services in the cart
+
+## SEO
+
+Every page's title, description, link-preview image and structured data (schema.org JSON-LD) live in `src/data/seo.ts`. Pages read them at runtime through `useDocumentMeta`. After `vite build`, `scripts/prerender.mjs` writes one HTML file per route (`dist/work/intervel.html` and so on) with that page's tags and a plain-HTML copy of its content, so crawlers and link previews see the right page without running JavaScript. `cleanUrls` in `vercel.json` serves those files at `/work/intervel`. The same script writes `dist/sitemap.xml`, so a new project is added to the sitemap automatically. `public/robots.txt` points crawlers at it.
+
+Link-preview images are 1200×630 JPGs in `public/images/og/`: one per project cover, plus `default.jpg` for every other page. They come from the image script below (`node scripts/optimize-images.mjs og`).
+
 ## Images
 
 The original screenshots live in `assets-src/` and are not served. To regenerate the AVIF/WebP outputs in `public/images/`, run this with Node 20 or later:

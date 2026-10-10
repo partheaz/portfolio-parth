@@ -8,9 +8,17 @@ export function ExperienceTable() {
         <li key={job.company} className={styles.job}>
           <div>
             <p className={styles.company}>{job.company}</p>
-            <p className={styles.role}>{job.role}</p>
+            <p className={styles.role}>
+              {job.role}
+              {job.location && ` · ${job.location}`}
+            </p>
           </div>
           <p className={styles.years}>{job.years}</p>
+          <ul className={styles.points}>
+            {job.points.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
+          </ul>
         </li>
       ))}
     </ol>

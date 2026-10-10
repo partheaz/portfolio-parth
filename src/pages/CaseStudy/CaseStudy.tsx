@@ -1,7 +1,7 @@
-import { useEffect } from "react";
 import { Navigate, useParams } from "react-router-dom";
+import { useMemo } from "react";
 import { projects, type Project } from "../../data/projects";
-import { site } from "../../data/site";
+import { caseStudyMeta } from "../../data/seo";
 import { CurtainLink } from "../../components/CurtainLink/CurtainLink";
 import { ImageSlot } from "../../components/ImageSlot/ImageSlot";
 import { VideoSlot } from "../../components/VideoSlot/VideoSlot";
@@ -21,27 +21,8 @@ export default function CaseStudy() {
   return <CaseStudyView key={projects[index].slug} project={projects[index]} index={index} />;
 }
 
-function useCreativeWorkJsonLd(p: Project) {
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.text = JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "CreativeWork",
-      name: `${p.brand} — ${p.kicker}`,
-      description: p.line,
-      dateCreated: p.year,
-      keywords: p.stack.join(", "),
-      creator: { "@type": "Person", name: site.name, jobTitle: site.role },
-    });
-    document.head.appendChild(script);
-    return () => script.remove();
-  }, [p]);
-}
-
 function CaseStudyView({ project: p, index }: { project: Project; index: number }) {
-  useDocumentMeta(`${p.brand} — ${p.kicker} · ${site.name}`, p.line);
-  useCreativeWorkJsonLd(p);
+  useDocumentMeta(useMemo(() => caseStudyMeta(p), [p]));
   const next = projects[(index + 1) % projects.length];
   const coverVideo = p.videos?.find((v) => v.cover);
   const clips = p.videos?.filter((v) => v !== coverVideo) ?? [];

@@ -1,4 +1,4 @@
-import { site } from "../data/site";
+import { homeMeta } from "../data/seo";
 import { useDocumentMeta } from "../hooks/useDocumentMeta";
 import { Hero } from "../sections/Hero/Hero";
 import { ProofStrip } from "../sections/ProofStrip/ProofStrip";
@@ -10,7 +10,7 @@ import { Contact } from "../sections/Contact/Contact";
 import { Marquee } from "../sections/Marquee/Marquee";
 
 export default function Home() {
-  useDocumentMeta(`${site.name} — ${site.role}`, site.description);
+  useDocumentMeta(homeMeta);
 
   return (
     <main id="main" tabIndex={-1}>

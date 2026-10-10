@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { projects, workTags, type Project, type WorkTag } from "../../data/projects";
-import { alsoShipped, mailto, site } from "../../data/site";
+import { alsoShipped, mailto } from "../../data/site";
 import { CurtainLink } from "../../components/CurtainLink/CurtainLink";
 import { ImageSlot } from "../../components/ImageSlot/ImageSlot";
 import { SplitHeading } from "../../components/SplitHeading/SplitHeading";
 import { VideoSlot } from "../../components/VideoSlot/VideoSlot";
 import { Swatch } from "../../components/Chip/Chip";
+import { workMeta } from "../../data/seo";
 import { useDocumentMeta } from "../../hooks/useDocumentMeta";
 import { revealRef } from "../../hooks/useReveal";
 import styles from "./WorkIndex.module.css";
@@ -13,10 +14,7 @@ import styles from "./WorkIndex.module.css";
 const pad = (n: number) => String(n).padStart(2, "0");
 
 export default function WorkIndex() {
-  useDocumentMeta(
-    `Work — Shopify themes, apps, migrations and CRO · ${site.name}`,
-    "Case studies from Shopify stores I've built for: product page and cart rebuilds, custom apps, Magento migrations and conversion work.",
-  );
+  useDocumentMeta(workMeta);
   const [tag, setTag] = useState<WorkTag | null>(null);
   const shown = tag ? projects.filter((p) => p.tags.includes(tag)) : projects;
 

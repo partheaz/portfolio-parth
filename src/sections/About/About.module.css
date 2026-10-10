@@ -71,6 +71,31 @@
   white-space: nowrap;
 }
 
+.points {
+  grid-column: 1 / -1;
+  display: grid;
+  gap: 6px;
+  max-width: 62ch;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--ink-80);
+}
+
+.points li {
+  position: relative;
+  padding-left: 16px;
+}
+
+.points li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72em;
+  width: 6px;
+  height: 1px;
+  background: var(--ink-45);
+}
+
 @media (max-width: 479px) {
   .portrait {
     aspect-ratio: 1 / 1;

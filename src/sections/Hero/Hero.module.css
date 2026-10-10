@@ -1,8 +1,7 @@
-/* ---------- Mobile first (< 900px): single column, fills the first screen ---------- */
+/* ---------- Mobile first (< 900px): single column ---------- */
 .hero {
   display: flex;
   flex-direction: column;
-  min-height: calc(100svh - var(--header-h) - var(--action-bar-h));
   padding: 32px var(--gutter) 24px;
 }
 
@@ -53,58 +52,6 @@
 
 .swatches::-webkit-scrollbar {
   display: none;
-}
-
-/* Peeking work carousel */
-.carousel {
-  display: flex;
-  gap: 8px;
-  margin: auto calc(var(--gutter) * -1) 0;
-  padding: 24px var(--gutter) 0;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scroll-padding-inline: var(--gutter);
-  scrollbar-width: none;
-}
-
-.carousel::-webkit-scrollbar {
-  display: none;
-}
-
-.slide {
-  flex: 0 0 62%;
-  scroll-snap-align: start;
-}
-
-.slideLink {
-  display: block;
-  color: var(--ink);
-}
-
-.slideImage {
-  aspect-ratio: 4 / 3;
-}
-
-.slideMeta {
-  display: flex;
-  align-items: baseline;
-  gap: 8px;
-  padding-top: 10px;
-}
-
-.slideNum {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.08em;
-  color: var(--ink-45);
-  font-variant-numeric: tabular-nums;
-}
-
-.slideBrand {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 1.1;
 }
 
 @media (max-width: 479px) {
@@ -313,9 +260,5 @@
   .hire:hover {
     background: var(--accent-fill);
     color: var(--on-accent);
-  }
-
-  .slideLink:hover {
-    color: var(--ink);
   }
 }
