@@ -1,0 +1,510 @@
+/*
+ * Slide AI loop. Sizes are calc(var(--u) * n); see FeatureLoop.module.css.
+ * Timeline (% of 8 s): panel in 5–13 · question 15–19 · typing 21–34 · answer 33–37 · product 38–42
+ * · add pressed 47–52 · cart view 55–59 · socks row 60–64 · subtotal 64 · free shipping 63–69
+ * · checkout pulse 76–82 · panel out 88–96.
+ */
+.scene {
+  --loop-t: 8s;
+  /* Opens on 70%: cart open, socks added, free shipping unlocked. */
+  --loop-start: -5.6s;
+  --ink: #131412;
+  --paper: #f7f3ec;
+  --lime: #c6f24d;
+  --muted: rgba(19, 20, 18, 0.55);
+  --rule: rgba(19, 20, 18, 0.12);
+  position: absolute;
+  inset: 0;
+  background: #131412;
+  color: var(--ink);
+}
+
+.scene * {
+  animation-duration: var(--loop-t);
+  animation-delay: var(--loop-start);
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Stacks two states in one cell so a swap doesn't shift the layout. */
+.swap {
+  display: inline-grid;
+}
+
+.swap > * {
+  grid-area: 1 / 1;
+}
+
+/* ---------- The store ---------- */
+.store {
+  position: absolute;
+  inset: 0;
+  padding: calc(var(--u) * 3) calc(var(--u) * 4);
+  color: #eee9e0;
+}
+
+.storeBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--u) * 3);
+  height: calc(var(--u) * 5);
+  border-bottom: 1px solid rgba(238, 233, 224, 0.1);
+}
+
+.storeLogo {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: calc(var(--u) * 2.2);
+}
+
+.storeNav {
+  display: flex;
+  flex: 1;
+  gap: calc(var(--u) * 1.6);
+}
+
+.storeNav i {
+  width: calc(var(--u) * 5);
+  height: calc(var(--u) * 0.5);
+  border-radius: 99px;
+  background: rgba(238, 233, 224, 0.22);
+}
+
+.storeCart {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 0.8);
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.3);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: rgba(238, 233, 224, 0.7);
+}
+
+.storeBadge {
+  place-items: center;
+  min-width: calc(var(--u) * 2.4);
+  height: calc(var(--u) * 2.4);
+  border-radius: 99px;
+  background: var(--lime);
+  color: var(--ink);
+  font-size: calc(var(--u) * 1.2);
+  animation-name: badgePop;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--u) * 2);
+  margin-top: calc(var(--u) * 3.5);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 0.6);
+}
+
+.cardImage {
+  aspect-ratio: 4 / 5;
+  margin-bottom: calc(var(--u) * 0.6);
+  border-radius: calc(var(--u) * 0.4);
+}
+
+.cardName {
+  font-size: calc(var(--u) * 1.5);
+}
+
+.cardPrice {
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.2);
+  color: rgba(238, 233, 224, 0.55);
+}
+
+[data-tone="0"] {
+  background: linear-gradient(160deg, #4b5046, #2a2d27);
+}
+
+[data-tone="1"] {
+  background: linear-gradient(160deg, #5a4a3a, #2f2821);
+}
+
+[data-tone="2"] {
+  background: linear-gradient(160deg, #3d4a4a, #232b2b);
+}
+
+[data-tone="socks"] {
+  background: linear-gradient(160deg, #e2dccf, #b9b1a2);
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 10, 9, 0.6);
+  animation-name: scrim;
+}
+
+/* ---------- The panel ---------- */
+.panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  width: calc(var(--u) * 40);
+  padding: calc(var(--u) * 2.6);
+  background: var(--paper);
+  box-shadow: calc(var(--u) * -2) 0 calc(var(--u) * 5) rgba(0, 0, 0, 0.45);
+  animation-name: panel;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 0.9);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: calc(var(--u) * 2);
+}
+
+.brandMark {
+  width: calc(var(--u) * 2);
+  height: calc(var(--u) * 1.3);
+  border-radius: calc(var(--u) * 0.3);
+  background: linear-gradient(120deg, var(--lime), #8fd14f);
+  transform: skewX(-20deg);
+}
+
+.tabs {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-top: calc(var(--u) * 1.8);
+  padding-bottom: calc(var(--u) * 1);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.2);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.tabs b {
+  font-weight: 400;
+}
+
+.tabLine {
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  width: 50%;
+  height: calc(var(--u) * 0.25);
+  background: var(--ink);
+  animation-name: tabLine;
+}
+
+.views {
+  position: relative;
+  flex: 1;
+  margin-top: calc(var(--u) * 2);
+}
+
+.chat,
+.cart {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 1.6);
+}
+
+.chat {
+  animation-name: chatView;
+}
+
+.cart {
+  animation-name: cartView;
+}
+
+/* Chat */
+.ask {
+  align-self: flex-end;
+  max-width: 85%;
+  padding: calc(var(--u) * 1.1) calc(var(--u) * 1.5);
+  border-radius: calc(var(--u) * 1.3) calc(var(--u) * 1.3) calc(var(--u) * 0.3) calc(var(--u) * 1.3);
+  background: var(--ink);
+  color: var(--paper);
+  font-size: calc(var(--u) * 1.45);
+  animation-name: ask;
+}
+
+.typing {
+  display: flex;
+  gap: calc(var(--u) * 0.5);
+  align-self: start;
+  padding: calc(var(--u) * 0.8) 0;
+  animation-name: typing;
+}
+
+.typing i {
+  width: calc(var(--u) * 0.8);
+  height: calc(var(--u) * 0.8);
+  border-radius: 50%;
+  background: var(--muted);
+  animation: dot 0.9s ease-in-out infinite;
+}
+
+.typing i:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typing i:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.answer {
+  max-width: 92%;
+  font-size: calc(var(--u) * 1.45);
+  line-height: 1.4;
+  animation-name: answer;
+}
+
+.product {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 1.2);
+  padding: calc(var(--u) * 1);
+  border: 1px solid var(--rule);
+  border-radius: calc(var(--u) * 0.6);
+  background: #fff;
+  animation-name: product;
+}
+
+.thumb {
+  flex: none;
+  width: calc(var(--u) * 4.6);
+  aspect-ratio: 1;
+  border-radius: calc(var(--u) * 0.4);
+}
+
+.productText {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 0.3);
+}
+
+.name {
+  font-size: calc(var(--u) * 1.4);
+  font-weight: 600;
+}
+
+.price {
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.2);
+  color: var(--muted);
+}
+
+.add {
+  place-items: center;
+  margin-left: auto;
+  padding: calc(var(--u) * 0.9) calc(var(--u) * 1.2);
+  border-radius: calc(var(--u) * 0.4);
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.05);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation-name: addPress;
+}
+
+.addLabel {
+  animation-name: before50;
+}
+
+.addedLabel {
+  animation-name: after50;
+}
+
+/* Cart */
+.ship {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 0.9);
+  padding-bottom: calc(var(--u) * 1.4);
+  border-bottom: 1px solid var(--rule);
+  font-size: calc(var(--u) * 1.3);
+}
+
+.shipBefore {
+  animation-name: before69;
+}
+
+.shipAfter {
+  font-weight: 600;
+  animation-name: after69;
+}
+
+.shipTrack {
+  height: calc(var(--u) * 0.7);
+  overflow: hidden;
+  border-radius: 99px;
+  background: rgba(19, 20, 18, 0.1);
+}
+
+.shipFill {
+  display: block;
+  height: 100%;
+  background: var(--ink);
+  transform-origin: left;
+  animation-name: shipFill;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: calc(var(--u) * 1.2);
+  padding-bottom: calc(var(--u) * 1.2);
+  border-bottom: 1px solid rgba(19, 20, 18, 0.08);
+}
+
+.rowNew {
+  animation-name: rowIn;
+}
+
+.total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  font-size: calc(var(--u) * 1.45);
+  font-weight: 600;
+}
+
+.subBefore {
+  animation-name: before64;
+}
+
+.subAfter {
+  animation-name: after64;
+}
+
+.countBefore {
+  font-weight: inherit;
+  animation-name: before53;
+}
+
+.countAfter {
+  font-weight: inherit;
+  animation-name: after53;
+}
+
+.checkout {
+  padding: calc(var(--u) * 1.4);
+  border-radius: calc(var(--u) * 0.5);
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.2);
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+  animation-name: checkout;
+}
+
+/* ---------- Timeline ---------- */
+@keyframes panel {
+  0%, 5% { transform: translateX(105%); }
+  13%, 88% { transform: translateX(0); }
+  96%, 100% { transform: translateX(105%); }
+}
+
+@keyframes scrim {
+  0%, 5% { opacity: 0; }
+  13%, 88% { opacity: 1; }
+  96%, 100% { opacity: 0; }
+}
+
+@keyframes chatView {
+  0%, 55% { opacity: 1; }
+  59%, 100% { opacity: 0; }
+}
+
+@keyframes cartView {
+  0%, 55% { opacity: 0; visibility: hidden; }
+  59%, 100% { opacity: 1; visibility: visible; }
+}
+
+@keyframes tabLine {
+  0%, 55% { transform: translateX(0); }
+  59%, 100% { transform: translateX(100%); }
+}
+
+@keyframes ask {
+  0%, 15% { opacity: 0; transform: translateY(calc(var(--u) * 1)); }
+  19%, 96% { opacity: 1; transform: none; }
+  100% { opacity: 0; }
+}
+
+@keyframes typing {
+  0%, 21% { opacity: 0; }
+  23%, 32% { opacity: 1; }
+  34%, 100% { opacity: 0; }
+}
+
+@keyframes dot {
+  0%, 60%, 100% { transform: translateY(0); }
+  30% { transform: translateY(calc(var(--u) * -0.5)); }
+}
+
+@keyframes answer {
+  0%, 33% { opacity: 0; transform: translateY(calc(var(--u) * 1)); }
+  37%, 96% { opacity: 1; transform: none; }
+  100% { opacity: 0; }
+}
+
+@keyframes product {
+  0%, 38% { opacity: 0; transform: translateY(calc(var(--u) * 1.5)); }
+  42%, 96% { opacity: 1; transform: none; }
+  100% { opacity: 0; }
+}
+
+@keyframes addPress {
+  0%, 47% { transform: scale(1); background: var(--ink); color: var(--paper); }
+  49% { transform: scale(0.9); background: var(--ink); color: var(--paper); }
+  50% { background: var(--lime); color: var(--ink); }
+  52%, 96% { transform: scale(1); background: var(--lime); color: var(--ink); }
+  100% { background: var(--ink); color: var(--paper); }
+}
+
+@keyframes badgePop {
+  0%, 52% { transform: scale(1); }
+  55% { transform: scale(1.35); }
+  58%, 100% { transform: scale(1); }
+}
+
+@keyframes rowIn {
+  0%, 60% { opacity: 0; transform: translateY(calc(var(--u) * -1.5)); }
+  64%, 100% { opacity: 1; transform: none; }
+}
+
+@keyframes shipFill {
+  0%, 63% { transform: scaleX(0.76); }
+  69%, 100% { transform: scaleX(1); }
+}
+
+@keyframes checkout {
+  0%, 76% { transform: scale(1); }
+  79% { transform: scale(1.04); background: #2b2d28; }
+  82%, 100% { transform: scale(1); }
+}
+
+/* State swaps: "before" shows until the step, "after" from it, both reset at the loop's end. */
+@keyframes before50 { 0%, 49.9% { opacity: 1; } 50%, 99.9% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes after50 { 0%, 49.9% { opacity: 0; } 50%, 99.9% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes before53 { 0%, 52.9% { opacity: 1; } 53%, 99.9% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes after53 { 0%, 52.9% { opacity: 0; } 53%, 99.9% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes before64 { 0%, 63.9% { opacity: 1; } 64%, 99.9% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes after64 { 0%, 63.9% { opacity: 0; } 64%, 99.9% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes before69 { 0%, 68.9% { opacity: 1; } 69%, 99.9% { opacity: 0; } 100% { opacity: 1; } }
+@keyframes after69 { 0%, 68.9% { opacity: 0; } 69%, 99.9% { opacity: 1; } 100% { opacity: 0; } }

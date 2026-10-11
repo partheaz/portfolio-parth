@@ -508,6 +508,10 @@
 }
 
 /* ---------- Screen recordings ---------- */
+.featureLoop {
+  margin-bottom: 12px;
+}
+
 .clips {
   display: grid;
   gap: 12px;

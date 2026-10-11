@@ -1,0 +1,77 @@
+/* The frame is always dark, like a screenshot: it doesn't flip with the site theme. */
+.loop {
+  display: flex;
+  flex-direction: column;
+  background: #131412;
+}
+
+/*
+ * Loops size everything in --u (via calc(var(--u) * n)), so they scale crisply. The stage is
+ * 100u x 62.5u on wide screens and 50u x 62.5u on phones (taller stage, bigger unit), so a loop
+ * lays out the same vertically in both and stays readable on a phone.
+ * Every animated element uses --loop-t for its duration and --loop-start as its delay; the
+ * negative start opens on a frame mid-story, so a paused loop still shows the feature.
+ */
+.stage {
+  --u: 1cqw;
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  container-type: inline-size;
+  font-family: var(--font-body);
+}
+
+.stage:not([data-playing]) *,
+.stage:not([data-playing]) *::before,
+.stage:not([data-playing]) *::after {
+  animation-play-state: paused !important;
+}
+
+/* Caption and pause button, under the animation. */
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 4px 4px 14px;
+  border-top: 1px solid rgba(247, 243, 236, 0.08);
+}
+
+.caption {
+  color: rgba(247, 243, 236, 0.7);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.toggle {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 14px;
+  border-radius: var(--r);
+  color: var(--paper);
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transition: background var(--t-press) var(--ease);
+}
+
+@media (hover: hover) {
+  .toggle:hover {
+    background: rgba(247, 243, 236, 0.1);
+  }
+}
+
+@media (max-width: 719px) {
+  .stage {
+    --u: 2cqw;
+    aspect-ratio: 4 / 5;
+  }
+}

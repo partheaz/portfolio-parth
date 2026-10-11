@@ -27,6 +27,8 @@ const jobs = [
   { file: "silent-wake-up.png", name: "silent-wake-up", og: "centre", widths: [800, 1600] },
   { file: "slide-chat.png", name: "slide-chat", og: "centre", widths: [800, 1600] },
   { file: "slide-cart.png", name: "slide-cart", widths: [800, 1600] },
+  { file: "intervel-bliss.webp", name: "intervel-bliss", og: "east", widths: [800, 1600] },
+  { file: "100-percent-film.jpg", name: "100-percent-film", widths: [800, 1600] },
   { file: "portrait.jpg", name: "portrait", widths: [440, 880] },
 ];
 

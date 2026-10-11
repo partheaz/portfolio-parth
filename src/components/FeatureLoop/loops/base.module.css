@@ -1,0 +1,53 @@
+/*
+ * Shared pieces for the loops. A loop's root gets `scene` from here alongside its own class, which sets --loop-t (duration)
+ * and --loop-start (negative delay: the frame a paused loop shows). Sizes are calc(var(--u) * n);
+ * see FeatureLoop.module.css.
+ */
+.scene {
+  position: absolute;
+  inset: 0;
+}
+
+.scene *,
+.scene [data-tap]::after {
+  animation-duration: var(--loop-t);
+  animation-delay: var(--loop-start);
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* Stacks two or more states in one cell so a swap doesn't shift the layout. */
+.swap {
+  display: inline-grid;
+}
+
+.swap > * {
+  grid-area: 1 / 1;
+  font-weight: inherit;
+}
+
+/*
+ * Tap ripple: give the element data-tap and style={{ "--at": 30 }} to ripple at 30% of the loop.
+ * Ring colour comes from --tap (set it on the scene).
+ */
+[data-tap] {
+  position: relative;
+}
+
+.scene [data-tap]::after {
+  content: "";
+  position: absolute;
+  inset: calc(var(--u) * -0.7);
+  border: calc(var(--u) * 0.25) solid var(--tap, rgba(198, 242, 77, 0.9));
+  border-radius: calc(var(--u) * 0.8);
+  opacity: 0;
+  pointer-events: none;
+  animation-name: tap;
+  animation-delay: calc(var(--loop-start) + var(--loop-t) * var(--at, 0) / 100);
+}
+
+@keyframes tap {
+  0% { opacity: 1; transform: scale(0.85); }
+  4% { opacity: 0; transform: scale(1.4); }
+  100% { opacity: 0; transform: scale(1.4); }
+}

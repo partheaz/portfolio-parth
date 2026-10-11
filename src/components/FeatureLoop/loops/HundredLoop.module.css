@@ -1,0 +1,431 @@
+/*
+ * 100 Percent loop. Timeline (% of 8 s): S3 colourway → purple 8, → blue 16 · S2 → gold 22
+ * ("No page reload" 8–26) · quick add shows 26, pressed 32–33 · cart badge 34 · cart in 40–44
+ * · replacement lens added 56–57 (row in 57–60) · cart out 90–96 · reset 98.
+ */
+.scene {
+  --loop-t: 8s;
+  /* Opens on 62%: cart open, replacement lens added. */
+  --loop-start: -4.96s;
+  --ink: #111;
+  --muted: rgba(17, 17, 17, 0.55);
+  --rule: rgba(17, 17, 17, 0.12);
+  --red: #e1251b;
+  --tap: rgba(225, 37, 27, 0.75);
+  /* Swatch size + gap, for the selection rings. */
+  --swatch-step: calc(var(--u) * 2.8);
+  background: #131412;
+  color: var(--ink);
+}
+
+.page {
+  position: absolute;
+  inset: calc(var(--u) * 2.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: calc(var(--u) * 0.8);
+  background: #fff;
+}
+
+.urlBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--u) * 1);
+  height: calc(var(--u) * 3.8);
+  padding: 0 calc(var(--u) * 1.4);
+  background: #ececec;
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.05);
+}
+
+.url {
+  padding: calc(var(--u) * 0.5) calc(var(--u) * 1.4);
+  overflow: hidden;
+  border-radius: 99px;
+  background: #fff;
+  color: #5c5e58;
+  white-space: nowrap;
+}
+
+.noReload {
+  padding: calc(var(--u) * 0.45) calc(var(--u) * 1.1);
+  border-radius: 99px;
+  background: #131412;
+  color: #c6f24d;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation-name: noReload;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 3);
+  height: calc(var(--u) * 5);
+  padding: 0 calc(var(--u) * 3);
+  background: var(--ink);
+  color: #fff;
+}
+
+.logo {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: calc(var(--u) * 2.2);
+}
+
+.nav {
+  display: flex;
+  flex: 1;
+  gap: calc(var(--u) * 1.6);
+}
+
+.nav i {
+  width: calc(var(--u) * 4);
+  height: calc(var(--u) * 0.45);
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.badge {
+  place-items: center;
+  min-width: calc(var(--u) * 2.3);
+  height: calc(var(--u) * 2.3);
+  border-radius: 99px;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.1);
+  animation-name: badgePop;
+}
+
+.count0 { animation-name: before34; }
+.count1 { animation-name: after34; }
+
+.collection {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: calc(var(--u) * 2.2) calc(var(--u) * 3) calc(var(--u) * 1.4);
+}
+
+.heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: calc(var(--u) * 2.6);
+  text-transform: uppercase;
+}
+
+.filters {
+  display: flex;
+  gap: calc(var(--u) * 0.8);
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1);
+  text-transform: uppercase;
+}
+
+.filters span {
+  padding: calc(var(--u) * 0.45) calc(var(--u) * 0.9);
+  border: 1px solid var(--rule);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: calc(var(--u) * 2);
+  padding: 0 calc(var(--u) * 3);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 0.8);
+}
+
+.image {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  background: #f2f2f2;
+}
+
+.image svg {
+  width: 78%;
+}
+
+.lensA { animation-name: lensA; }
+.lensB { animation-name: lensB; }
+.lensC { color: #e79ab0; }
+.lensFinal { color: #2f7de0; }
+.lensSpare { color: rgba(170, 190, 210, 0.75); }
+
+.swatches {
+  position: relative;
+  display: flex;
+  gap: calc(var(--u) * 0.8);
+}
+
+.swatches > span:not(.ring0):not(.ring1) {
+  width: calc(var(--u) * 2);
+  height: calc(var(--u) * 2);
+  border-radius: 50%;
+}
+
+.ring0,
+.ring1 {
+  position: absolute;
+  top: calc(var(--u) * -0.35);
+  left: calc(var(--u) * -0.35);
+  width: calc(var(--u) * 2.7);
+  height: calc(var(--u) * 2.7);
+  border: calc(var(--u) * 0.2) solid var(--ink);
+  border-radius: 50%;
+}
+
+.ring0 { animation-name: ring0; }
+.ring1 { animation-name: ring1; }
+
+.name {
+  font-size: calc(var(--u) * 1.4);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.price {
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.2);
+  color: var(--muted);
+}
+
+.quick {
+  place-items: center;
+  height: calc(var(--u) * 3);
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.05);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  animation-name: quick;
+}
+
+.quickBefore { animation-name: before33; }
+.quickAfter { animation-name: after33; }
+
+/* Custom cart */
+.cart {
+  position: absolute;
+  top: calc(var(--u) * 3.8);
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 1.2);
+  width: calc(var(--u) * 38);
+  padding: 0 calc(var(--u) * 2.4) calc(var(--u) * 2);
+  background: #fff;
+  box-shadow: calc(var(--u) * -2) 0 calc(var(--u) * 4) rgba(0, 0, 0, 0.25);
+  font-size: calc(var(--u) * 1.25);
+  animation-name: cart;
+}
+
+.cartHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: calc(var(--u) * 5);
+  margin: 0 calc(var(--u) * -2.4);
+  padding: 0 calc(var(--u) * 2.4);
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: calc(var(--u) * 1.6);
+  text-transform: uppercase;
+}
+
+.row,
+.rec {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: calc(var(--u) * 1.2);
+  padding-bottom: calc(var(--u) * 1.2);
+  border-bottom: 1px solid var(--rule);
+}
+
+.row small,
+.rec small {
+  display: block;
+  color: var(--muted);
+}
+
+.rowNew {
+  animation-name: rowIn;
+}
+
+.thumb {
+  display: grid;
+  place-items: center;
+  width: calc(var(--u) * 5);
+  height: calc(var(--u) * 4);
+  background: #f2f2f2;
+}
+
+.thumb svg {
+  width: 85%;
+}
+
+.recsHead {
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.05);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.rec {
+  padding: calc(var(--u) * 1);
+  border: 1px solid var(--rule);
+  background: #fafafa;
+}
+
+.add {
+  place-items: center;
+  padding: calc(var(--u) * 0.6) calc(var(--u) * 1.2);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1);
+  text-transform: uppercase;
+  animation-name: addPress;
+}
+
+.addBefore { animation-name: before57; }
+.addAfter { animation-name: after57; }
+
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  margin-top: auto;
+  font-weight: 700;
+}
+
+.checkout {
+  padding: calc(var(--u) * 1.1);
+  background: var(--ink);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.1);
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* ---------- Phones: two cards, full-width cart ---------- */
+@media (max-width: 719px) {
+  .page {
+    inset: calc(var(--u) * 1.5);
+  }
+
+  .header,
+  .collection,
+  .grid {
+    padding-left: calc(var(--u) * 2);
+    padding-right: calc(var(--u) * 2);
+  }
+
+  .filters {
+    display: none;
+  }
+
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card:nth-child(3) {
+    display: none;
+  }
+
+  .url {
+    max-width: 60%;
+  }
+
+  .cart {
+    width: 100%;
+  }
+}
+
+/* ---------- Timeline ---------- */
+@keyframes lensA {
+  0%, 7% { color: #e0412f; }
+  9%, 15% { color: #7b5cd6; }
+  17%, 97.9% { color: #2f7de0; }
+  98%, 100% { color: #e0412f; }
+}
+
+@keyframes lensB {
+  0%, 21% { color: #26282b; }
+  23%, 97.9% { color: #e6a82f; }
+  98%, 100% { color: #26282b; }
+}
+
+@keyframes ring0 {
+  0%, 7% { transform: translateX(0); }
+  9%, 15% { transform: translateX(var(--swatch-step)); }
+  17%, 97.9% { transform: translateX(calc(var(--swatch-step) * 2)); }
+  98%, 100% { transform: translateX(0); }
+}
+
+@keyframes ring1 {
+  0%, 21% { transform: translateX(0); }
+  23%, 97.9% { transform: translateX(var(--swatch-step)); }
+  98%, 100% { transform: translateX(0); }
+}
+
+@keyframes noReload {
+  0%, 7% { opacity: 0; transform: scale(0.8); }
+  9%, 26% { opacity: 1; transform: none; }
+  29%, 100% { opacity: 0; transform: none; }
+}
+
+@keyframes quick {
+  0%, 25% { opacity: 0; transform: translateY(calc(var(--u) * 0.6)); background: var(--ink); }
+  27%, 31% { opacity: 1; transform: none; background: var(--ink); }
+  32% { transform: scale(0.94); background: var(--ink); }
+  33.5%, 97.9% { opacity: 1; transform: none; background: var(--red); }
+  98%, 100% { opacity: 0; background: var(--ink); }
+}
+
+@keyframes badgePop {
+  0%, 33% { transform: scale(1); }
+  36% { transform: scale(1.35); }
+  39%, 100% { transform: scale(1); }
+}
+
+@keyframes cart {
+  0%, 40% { transform: translateX(105%); }
+  44%, 90% { transform: translateX(0); }
+  96%, 100% { transform: translateX(105%); }
+}
+
+@keyframes addPress {
+  0%, 55% { transform: scale(1); background: var(--ink); }
+  56.5% { transform: scale(0.9); background: var(--ink); }
+  58%, 97.9% { transform: scale(1); background: var(--red); }
+  98%, 100% { background: var(--ink); }
+}
+
+@keyframes rowIn {
+  0%, 57% { opacity: 0; transform: translateY(calc(var(--u) * -1)); }
+  60%, 97.9% { opacity: 1; transform: none; }
+  98%, 100% { opacity: 0; }
+}
+
+@keyframes before33 { 0%, 32.9% { opacity: 1; } 33%, 97.9% { opacity: 0; } 98%, 100% { opacity: 1; } }
+@keyframes after33 { 0%, 32.9% { opacity: 0; } 33%, 97.9% { opacity: 1; } 98%, 100% { opacity: 0; } }
+@keyframes before34 { 0%, 33.9% { opacity: 1; } 34%, 97.9% { opacity: 0; } 98%, 100% { opacity: 1; } }
+@keyframes after34 { 0%, 33.9% { opacity: 0; } 34%, 97.9% { opacity: 1; } 98%, 100% { opacity: 0; } }
+@keyframes before57 { 0%, 56.9% { opacity: 1; } 57%, 97.9% { opacity: 0; } 98%, 100% { opacity: 1; } }
+@keyframes after57 { 0%, 56.9% { opacity: 0; } 57%, 97.9% { opacity: 1; } 98%, 100% { opacity: 0; } }

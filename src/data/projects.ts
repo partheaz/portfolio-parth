@@ -4,6 +4,9 @@ import type { ImageAsset, VideoAsset } from "./images";
 export const workTags = ["Themes", "Apps", "Integrations", "Migrations", "CRO"] as const;
 export type WorkTag = (typeof workTags)[number];
 
+/** Coded feature animations in src/components/FeatureLoop/loops. */
+export type LoopName = "slide-ai" | "criquet" | "masienda" | "intervel" | "100-percent" | "aerospray" | "almsthre";
+
 /** One way the build helps more visitors buy — shown under "Why it converts". */
 export type CroLever = { lever: string; detail: string };
 
@@ -39,6 +42,8 @@ export type Project = {
    * Drop files in /public/videos — see README → "Adding project videos".
    */
   videos?: VideoAsset[];
+  /** A coded animation of the feature, shown in "How it feels to shop" in place of the clips and screenshots. */
+  loop?: { name: LoopName; caption: string };
   /** Live store, linked from the case study. */
   url?: string;
 };
@@ -69,10 +74,8 @@ export const projects: Project[] = [
     flow: [{ n: "01", t: "Custom OS 2.0 theme and sections" }, { n: "02", t: "Buy box: flavour, strength, subscribe-and-save" }, { n: "03", t: "Tiered discounts, bundles and cart upsell" }, { n: "04", t: "Waitlist mode with Klaviyo and fallbacks" }, { n: "05", t: "Launch theme run alongside the live store" }],
     specs: [{ k: "Client", v: "Intervel" }, { k: "Surface", v: "Custom Shopify OS 2.0 theme" }, { k: "Role", v: "Theme developer (via NINE15)" }, { k: "Year", v: "Sept 2025 – Oct 2026" }, { k: "Scope", v: "Product page, cart, waitlist, navigation, sections" }]
 ,
-    image: { name: "intervel-pdp", width: 1600, height: 729, alt: "Intervel Sidekick 3-pack product page — flavour picker and Join Waitlist button" },
-    videos: [
-      { name: "intervel-pdp", width: 1600, height: 728, webm: true, cover: true, caption: "Product lines, the Sidekick 3-pack page in waitlist mode, and the footer" },
-    ]
+    loop: { name: "intervel", caption: "Buy box, quantity tiers, then waitlist mode site-wide" },
+    image: { name: "intervel-bliss", width: 1600, height: 666, focus: "70% 35%", alt: "Intervel — a runner lying in dry grass, smiling, holding a tin of Bliss" }
   },
   {
     slug: "slide-ai",
@@ -96,6 +99,7 @@ export const projects: Project[] = [
     result: "Cart and conversion work that used to be rebuilt for each client is now one app on the Shopify App Store, which any merchant can install and set up themselves.",
     flow: [{ n: "01", t: "Shopper opens the slide-out panel" }, { n: "02", t: "Asks the AI assistant a question" }, { n: "03", t: "Gets products with add to cart" }, { n: "04", t: "Cart suggests what goes with it" }, { n: "05", t: "Checkout without a page reload" }],
     specs: [{ k: "Type", v: "Shopify app" }, { k: "Company", v: "NINE15" }, { k: "Role", v: "Developer, NINE15 team" }, { k: "Year", v: "2025–26" }, { k: "Scope", v: "Slide cart, AI chat, recommendations, quizzes" }],
+    loop: { name: "slide-ai", caption: "Ask the assistant, add from the chat, unlock free shipping" },
     image: { name: "slide-chat", width: 1600, height: 900, alt: "Slide AI chat — a shopper asks for sunglasses and gets photochromic picks with add-to-cart buttons" },
     gallery: [{ name: "slide-cart", width: 1600, height: 900, alt: "Slide cart with free-shipping bar, upsells, gift message and discount code, plus Loop, Redo, GovX and Shop Pay" }]
   },
@@ -121,6 +125,7 @@ export const projects: Project[] = [
     flow: [{ n: "01", t: "Map every React component to Horizon" }, { n: "02", t: "Reuse Horizon sections first" }, { n: "03", t: "Build 10 sections and 8 blocks" }, { n: "04", t: "Move 13 drones to native products" }, { n: "05", t: "Handbook and handover" }],
     specs: [{ k: "Client", v: "AeroSpray" }, { k: "Surface", v: "Shopify theme (Horizon 3.2)" }, { k: "Role", v: "Shopify developer, migration lead" }, { k: "Year", v: "2026" }, { k: "Scope", v: "5 pages, header, footer, catalogue" }]
 ,
+    loop: { name: "aerospray", caption: "From editing code to the theme editor, drones in one cart" },
     image: { name: "aerospray-film", width: 1280, height: 720, widths: [800, 1280], alt: "AeroSpray agricultural drone spraying over crop rows at sunset" },
     videos: [
       // Streamed from AeroSpray's Shopify CDN (16 s, ~10 MB) — short enough to loop whole.
@@ -181,7 +186,15 @@ export const projects: Project[] = [
     result: "The range now shops like one connected catalogue instead of a list of separate products — and the team updates collections and the cart without booking developer time for every change.",
     flow: [{ n: "01", t: "Remap product page sections and data" }, { n: "02", t: "Colourways switch in place" }, { n: "03", t: "Quick add and sticky add to cart" }, { n: "04", t: "Custom Rebuy cart" }, { n: "05", t: "Filters and in-grid promo blocks" }],
     specs: [{ k: "Client", v: "100 Percent" }, { k: "Surface", v: "Shopify Plus theme" }, { k: "Role", v: "Sole developer" }, { k: "Year", v: "2025" }, { k: "Scope", v: "Product page, cart, collections, quick add" }],
-    image: { name: "100-percent-cover", width: 1600, height: 2000, focus: "52% 32%" }
+    loop: { name: "100-percent", caption: "Colourways switch in place, quick add, custom cart" },
+    image: { name: "100-percent-cover", width: 1600, height: 2000, focus: "52% 32%" },
+    videos: [
+      {
+        name: "100-percent-film", width: 1280, height: 720, webm: true, cover: true,
+        poster: { name: "100-percent-film", width: 1600, height: 900 },
+        caption: "100% sunglasses brand film",
+      },
+    ]
   },
   {
     slug: "masienda",
@@ -205,6 +218,7 @@ export const projects: Project[] = [
     result: "Conversion rate rose around 28% after the retheme, with total revenue up alongside it — and the team now edits the store themselves instead of filing developer requests.",
     flow: [{ n: "01", t: "Audit the legacy 1.0 theme" }, { n: "02", t: "Rebuild the structure on Horizon" }, { n: "03", t: "Port every custom feature to sections" }, { n: "04", t: "Sticky add to cart, quick add, header search" }, { n: "05", t: "Rebuy cart and upsells" }],
     specs: [{ k: "Client", v: "Masienda" }, { k: "Surface", v: "Shopify theme (Horizon)" }, { k: "Role", v: "Sole developer" }, { k: "Year", v: "2025" }, { k: "Scope", v: "Retheme, product page, cart, upsells, search" }],
+    loop: { name: "masienda", caption: "Old theme to Horizon, rebuilt features, conversion lift" },
     image: { name: "masienda-products", width: 1600, height: 1033 },
     videos: [
       { name: "masienda-pdp", width: 1280, height: 720, webm: true, cover: true, caption: "Masienda brand film on the masa harina product page" },
@@ -236,6 +250,7 @@ export const projects: Project[] = [
     flow: [{ n: "01", t: "Group colours by product type" }, { n: "02", t: "Variant-style swatches on the product page" }, { n: "03", t: "Custom Rebuy cards with swatches and size quick add" }, { n: "04", t: "Sticky add to cart and review quotes" }, { n: "05", t: "A/B test against the old product page" }],
     specs: [{ k: "Client", v: "Criquet Shirts" }, { k: "Surface", v: "Shopify theme + Rebuy" }, { k: "Role", v: "Shopify developer (via NINE15)" }, { k: "Year", v: "2025" }, { k: "Scope", v: "Product page, recommendations, collection grid" }]
 ,
+    loop: { name: "criquet", caption: "Colour swatches, quick add and the A/B winner" },
     image: { name: "criquet-pdp", width: 1600, height: 761, alt: "Criquet product page — brrr° Long Sleeve Range Polo with colour swatches and size picker" },
     videos: [
       // Streamed from Criquet's Shopify CDN (HLS). Featured: cover, work card and hover preview.
@@ -246,7 +261,6 @@ export const projects: Project[] = [
         poster: { name: "criquet-film", width: 1600, height: 519 },
         caption: "Criquet brand film from the storefront hero",
       },
-      { name: "criquet-pdp", width: 1600, height: 762, webm: true, caption: "Product page walkthrough — colour swatches, Pairs Well With cards and reviews" },
     ],
     mobile: [{ name: "criquet-collection-mobile", width: 394, height: 1094, widths: [394], alt: "Criquet best sellers collection on mobile — colour swatches and quick add on each card" }]
   },
@@ -333,6 +347,7 @@ export const projects: Project[] = [
     result: "Adding to cart no longer costs a page load, and the team manages their own navigation.",
     flow: [{ n: "01", t: "Audit the theme and mobile speed" }, { n: "02", t: "Drawer menu built from editor blocks" }, { n: "03", t: "One shared cart system" }, { n: "04", t: "Quick add and swatches on collections" }, { n: "05", t: "Sticky add to cart on mobile" }],
     specs: [{ k: "Client", v: "Almsthre" }, { k: "Surface", v: "Theme (Shopify 2.0)" }, { k: "Role", v: "Theme developer" }, { k: "Year", v: "2024" }, { k: "Scope", v: "Navigation, collections, product page, cart" }],
+    loop: { name: "almsthre", caption: "Field Notes filters, drawer menu, quick add, sticky add to cart" },
     image: { name: "almsthre-home", width: 1600, height: 761, alt: "Almsthre homepage — category tiles for bar, saddle, frame and top tube bags" },
     videos: [
       // Streamed from Almsthre's Shopify CDN. The film is 2.5 min / 86 MB, so only a 14 s window loops.
@@ -344,7 +359,6 @@ export const projects: Project[] = [
         poster: { name: "almsthre-film", width: 1440, height: 720, widths: [800, 1440] },
         caption: "Almsthre brand film — riders through the city and along the coast",
       },
-      { name: "almsthre-field-notes", width: 1600, height: 762, webm: true, caption: "Homepage and Field Notes journal with category filters" },
     ]
   }
 ];

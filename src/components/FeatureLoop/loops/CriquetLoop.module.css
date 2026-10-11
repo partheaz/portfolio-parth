@@ -1,0 +1,589 @@
+/*
+ * Criquet loop. Sizes are calc(var(--u) * n); see FeatureLoop.module.css.
+ * Timeline (% of 8 s): colours Sand 6 · Maroon 14 · Slate 22 (URL and name follow)
+ * · card colour 30 · card size 38 · card add 44 · cart badge 47 · A/B in 56–61 · winner 68–73
+ * · everything resets at 96 under the A/B panel, which fades out 97–100.
+ */
+.scene {
+  --loop-t: 8s;
+  /* Opens on 48%: Slate selected, shorts picked in M and added. */
+  --loop-start: -3.84s;
+  --ink: #222420;
+  --green: #1f5a3a;
+  --cta: #7aaa85;
+  --lime: #c6f24d;
+  --page: #fbfaf6;
+  --muted: rgba(34, 36, 32, 0.55);
+  --rule: rgba(34, 36, 32, 0.14);
+  position: absolute;
+  inset: 0;
+  background: #131412;
+  color: var(--ink);
+}
+
+.scene *,
+.scene [data-tap]::after {
+  animation-duration: var(--loop-t);
+  animation-delay: var(--loop-start);
+  animation-iteration-count: infinite;
+  animation-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.swap {
+  display: inline-grid;
+}
+
+.swap > * {
+  grid-area: 1 / 1;
+  font-weight: inherit;
+}
+
+.s0 { animation-name: s0; }
+.s1 { animation-name: s1; }
+.s2 { animation-name: s2; }
+.s3 { animation-name: s3; }
+
+/* ---------- The page ---------- */
+.page {
+  position: absolute;
+  inset: calc(var(--u) * 2.5);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: calc(var(--u) * 0.8);
+  background: var(--page);
+}
+
+.urlBar {
+  display: flex;
+  align-items: center;
+  height: calc(var(--u) * 3.8);
+  padding: 0 calc(var(--u) * 1.4);
+  background: #ebe7df;
+}
+
+.url {
+  padding: calc(var(--u) * 0.5) calc(var(--u) * 1.4);
+  overflow: hidden;
+  border-radius: 99px;
+  background: #fff;
+  color: #5c5e58;
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.05);
+  white-space: nowrap;
+}
+
+.url b {
+  color: var(--ink);
+  font-weight: 500;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--u) * 3);
+  height: calc(var(--u) * 5);
+  padding: 0 calc(var(--u) * 3);
+  border-bottom: 1px solid var(--rule);
+}
+
+.logo {
+  color: var(--green);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: calc(var(--u) * 1.8);
+  letter-spacing: 0.28em;
+}
+
+.nav {
+  display: flex;
+  flex: 1;
+  gap: calc(var(--u) * 1.6);
+}
+
+.nav i {
+  width: calc(var(--u) * 4);
+  height: calc(var(--u) * 0.45);
+  border-radius: 99px;
+  background: rgba(34, 36, 32, 0.18);
+}
+
+.badge {
+  place-items: center;
+  min-width: calc(var(--u) * 2.3);
+  height: calc(var(--u) * 2.3);
+  border-radius: 99px;
+  background: var(--green);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.1);
+  animation-name: badgePop;
+}
+
+.count0 { animation-name: before47; }
+.count1 { animation-name: after47; }
+
+.pdp {
+  display: grid;
+  flex: 1;
+  grid-template-columns: 44% 1fr;
+  gap: calc(var(--u) * 3);
+  min-height: 0;
+  padding: calc(var(--u) * 2.4) calc(var(--u) * 3);
+}
+
+.media {
+  display: grid;
+  place-items: center;
+  border-radius: calc(var(--u) * 0.4);
+  background: #d8d2c5;
+}
+
+.polo {
+  width: 72%;
+  animation-name: polo;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 0.9);
+  min-width: 0;
+}
+
+.title {
+  font-size: calc(var(--u) * 2.3);
+  font-weight: 600;
+  line-height: 1.1;
+}
+
+.meta {
+  display: flex;
+  gap: calc(var(--u) * 2);
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.2);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.label {
+  margin-top: calc(var(--u) * 0.6);
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.05);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.swatches {
+  position: relative;
+  display: flex;
+  gap: calc(var(--u) * 1.2);
+}
+
+.swatch {
+  position: relative;
+  width: calc(var(--u) * 3);
+  height: calc(var(--u) * 3);
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 50%;
+}
+
+.ring {
+  position: absolute;
+  top: calc(var(--u) * -0.45);
+  left: calc(var(--u) * -0.45);
+  width: calc(var(--u) * 3.9);
+  height: calc(var(--u) * 3.9);
+  border: calc(var(--u) * 0.22) solid var(--ink);
+  border-radius: 50%;
+  animation-name: ring;
+}
+
+.sizes {
+  display: flex;
+  gap: calc(var(--u) * 0.8);
+}
+
+.sizes span {
+  padding: calc(var(--u) * 0.6) calc(var(--u) * 1.1);
+  border: 1px solid rgba(34, 36, 32, 0.25);
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.05);
+}
+
+.cta {
+  padding: calc(var(--u) * 1.1);
+  background: var(--cta);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.1);
+  letter-spacing: 0.08em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* Pairs Well With card */
+.card {
+  display: flex;
+  gap: calc(var(--u) * 1.2);
+  padding: calc(var(--u) * 1);
+  border: 1px solid var(--rule);
+  border-radius: calc(var(--u) * 0.4);
+  background: #fff;
+}
+
+.shorts {
+  flex: none;
+  width: calc(var(--u) * 6.4);
+  height: calc(var(--u) * 6.4);
+  padding: calc(var(--u) * 0.6);
+  border-radius: calc(var(--u) * 0.3);
+  background: #ece8df;
+  animation-name: shorts;
+}
+
+.cardBody {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: calc(var(--u) * 0.7);
+}
+
+.cardName {
+  font-size: calc(var(--u) * 1.25);
+  font-weight: 600;
+}
+
+.miniSwatches {
+  position: relative;
+  display: flex;
+  gap: calc(var(--u) * 0.8);
+}
+
+.miniSwatches > span:not(.miniRing) {
+  position: relative;
+  width: calc(var(--u) * 1.8);
+  height: calc(var(--u) * 1.8);
+  border-radius: 50%;
+}
+
+.miniRing {
+  position: absolute;
+  top: calc(var(--u) * -0.35);
+  left: calc(var(--u) * -0.35);
+  width: calc(var(--u) * 2.5);
+  height: calc(var(--u) * 2.5);
+  border: calc(var(--u) * 0.18) solid var(--ink);
+  border-radius: 50%;
+  animation-name: miniRing;
+}
+
+.cardRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: calc(var(--u) * 1);
+}
+
+.chips {
+  display: flex;
+  gap: calc(var(--u) * 0.5);
+}
+
+.chips span {
+  position: relative;
+  padding: calc(var(--u) * 0.35) calc(var(--u) * 0.7);
+  border: 1px solid rgba(34, 36, 32, 0.25);
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1);
+}
+
+.chips .chipPick {
+  animation-name: chipPick;
+}
+
+.add {
+  position: relative;
+  place-items: center;
+  padding: calc(var(--u) * 0.5) calc(var(--u) * 1.1);
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  animation-name: addPress;
+}
+
+.addBefore { animation-name: before45; }
+.addAfter { animation-name: after45; }
+
+/* Tap ripples on whatever is being "clicked" */
+[data-tap] {
+  position: relative;
+}
+
+[data-tap]::after {
+  content: "";
+  position: absolute;
+  inset: calc(var(--u) * -0.7);
+  border: calc(var(--u) * 0.25) solid rgba(31, 90, 58, 0.7);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.add[data-tap]::after,
+.chipPick[data-tap]::after {
+  border-radius: calc(var(--u) * 0.6);
+}
+
+[data-tap="1"]::after { animation-name: tap6; }
+[data-tap="2"]::after { animation-name: tap14; }
+[data-tap="3"]::after { animation-name: tap22; }
+[data-tap="4"]::after { animation-name: tap30; }
+[data-tap="5"]::after { animation-name: tap38; }
+[data-tap="6"]::after { animation-name: tap44; }
+
+/* ---------- A/B test ---------- */
+.ab {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: calc(var(--u) * 3);
+  background: rgba(10, 10, 9, 0.9);
+  animation-name: ab;
+}
+
+.abTitle {
+  color: #f7f3ec;
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.variants {
+  display: flex;
+  align-items: flex-start;
+  gap: calc(var(--u) * 4);
+}
+
+.variant {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 1);
+  width: calc(var(--u) * 26);
+  padding: calc(var(--u) * 1.6);
+  border: calc(var(--u) * 0.3) solid transparent;
+  border-radius: calc(var(--u) * 0.6);
+  background: var(--page);
+}
+
+.variantA {
+  animation-name: variantA;
+}
+
+.variantB {
+  animation-name: variantB;
+}
+
+.variantLabel {
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.05);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.wireImage {
+  height: calc(var(--u) * 10);
+  border-radius: calc(var(--u) * 0.3);
+  background: #d8d2c5;
+}
+
+.wireLine {
+  width: 80%;
+  height: calc(var(--u) * 0.9);
+  border-radius: 99px;
+  background: rgba(34, 36, 32, 0.16);
+}
+
+.wireLine[data-short] {
+  width: 50%;
+}
+
+.wireDots {
+  display: flex;
+  gap: calc(var(--u) * 0.6);
+}
+
+.wireDots i {
+  width: calc(var(--u) * 1.5);
+  height: calc(var(--u) * 1.5);
+  border-radius: 50%;
+  background: #2f3a35;
+}
+
+.wireDots i:nth-child(2) { background: #e6dcc6; border: 1px solid rgba(0, 0, 0, 0.15); }
+.wireDots i:nth-child(3) { background: #4a1c22; }
+.wireDots i:nth-child(4) { background: #5d6670; }
+
+.wireCard {
+  height: calc(var(--u) * 3.2);
+  border: 1px solid var(--rule);
+  border-radius: calc(var(--u) * 0.3);
+}
+
+.wireButton {
+  height: calc(var(--u) * 2.6);
+  background: var(--cta);
+}
+
+.winner {
+  position: absolute;
+  top: calc(var(--u) * -1.5);
+  right: calc(var(--u) * 1.2);
+  padding: calc(var(--u) * 0.4) calc(var(--u) * 1);
+  border-radius: 99px;
+  background: var(--lime);
+  color: #131412;
+  font-family: var(--font-mono);
+  font-size: calc(var(--u) * 1.05);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  animation-name: winner;
+}
+
+/* ---------- Phones: one column, no size row or button ---------- */
+@media (max-width: 719px) {
+  .page {
+    inset: calc(var(--u) * 1.5);
+  }
+
+  .header {
+    padding: 0 calc(var(--u) * 2);
+  }
+
+  .pdp {
+    grid-template-columns: 1fr;
+    grid-template-rows: calc(var(--u) * 15) auto;
+    gap: calc(var(--u) * 1.6);
+    padding: calc(var(--u) * 1.6) calc(var(--u) * 2);
+  }
+
+  .polo {
+    width: auto;
+    height: 88%;
+  }
+
+  .sizes,
+  .cta {
+    display: none;
+  }
+
+  .variants {
+    gap: calc(var(--u) * 2);
+  }
+
+  .variant {
+    width: calc(var(--u) * 21);
+  }
+
+  .wireImage {
+    height: calc(var(--u) * 8);
+  }
+}
+
+/* ---------- Timeline ---------- */
+@keyframes s0 { 0%, 5.9% { opacity: 1; } 6%, 95.9% { opacity: 0; } 96%, 100% { opacity: 1; } }
+@keyframes s1 { 0%, 5.9% { opacity: 0; } 6%, 13.9% { opacity: 1; } 14%, 100% { opacity: 0; } }
+@keyframes s2 { 0%, 13.9% { opacity: 0; } 14%, 21.9% { opacity: 1; } 22%, 100% { opacity: 0; } }
+@keyframes s3 { 0%, 21.9% { opacity: 0; } 22%, 95.9% { opacity: 1; } 96%, 100% { opacity: 0; } }
+
+@keyframes ring {
+  0%, 5% { transform: translateX(0); }
+  7%, 13% { transform: translateX(calc(var(--u) * 4.2)); }
+  15%, 21% { transform: translateX(calc(var(--u) * 8.4)); }
+  23%, 95.9% { transform: translateX(calc(var(--u) * 12.6)); }
+  96%, 100% { transform: translateX(0); }
+}
+
+@keyframes polo {
+  0%, 5% { color: #2f3a35; }
+  7%, 13% { color: #efe6d2; }
+  15%, 21% { color: #4a1c22; }
+  23%, 95.9% { color: #5d6670; }
+  96%, 100% { color: #2f3a35; }
+}
+
+@keyframes shorts {
+  0%, 29% { color: #b9a27a; }
+  31%, 95.9% { color: #26304a; }
+  96%, 100% { color: #b9a27a; }
+}
+
+@keyframes miniRing {
+  0%, 29% { transform: translateX(0); }
+  31%, 95.9% { transform: translateX(calc(var(--u) * 2.6)); }
+  96%, 100% { transform: translateX(0); }
+}
+
+@keyframes chipPick {
+  0%, 37% { background: transparent; color: var(--ink); }
+  39%, 95.9% { background: var(--ink); color: #fff; }
+  96%, 100% { background: transparent; color: var(--ink); }
+}
+
+@keyframes addPress {
+  0%, 43% { transform: scale(1); background: var(--ink); }
+  44.5% { transform: scale(0.9); background: var(--ink); }
+  46%, 95.9% { transform: scale(1); background: var(--green); }
+  96%, 100% { background: var(--ink); }
+}
+
+@keyframes badgePop {
+  0%, 46% { transform: scale(1); }
+  49% { transform: scale(1.35); }
+  52%, 100% { transform: scale(1); }
+}
+
+@keyframes ab {
+  0%, 55% { opacity: 0; visibility: hidden; }
+  59%, 96.9% { opacity: 1; visibility: visible; }
+  100% { opacity: 0; visibility: visible; }
+}
+
+@keyframes variantA {
+  0%, 56% { opacity: 0; transform: translateY(calc(var(--u) * 3)); }
+  61%, 67% { opacity: 1; transform: none; }
+  71%, 100% { opacity: 0.35; transform: none; }
+}
+
+@keyframes variantB {
+  0%, 57% { opacity: 0; transform: translateY(calc(var(--u) * 3)); border-color: transparent; }
+  62%, 67% { opacity: 1; transform: none; border-color: transparent; }
+  71%, 100% { opacity: 1; transform: none; border-color: var(--lime); }
+}
+
+@keyframes winner {
+  0%, 68% { transform: scale(0); }
+  71% { transform: scale(1.15); }
+  73%, 100% { transform: scale(1); }
+}
+
+@keyframes before45 { 0%, 44.9% { opacity: 1; } 45%, 95.9% { opacity: 0; } 96%, 100% { opacity: 1; } }
+@keyframes after45 { 0%, 44.9% { opacity: 0; } 45%, 95.9% { opacity: 1; } 96%, 100% { opacity: 0; } }
+@keyframes before47 { 0%, 46.9% { opacity: 1; } 47%, 95.9% { opacity: 0; } 96%, 100% { opacity: 1; } }
+@keyframes after47 { 0%, 46.9% { opacity: 0; } 47%, 95.9% { opacity: 1; } 96%, 100% { opacity: 0; } }
+
+@keyframes tap6 { 0%, 5% { opacity: 0; transform: scale(0.6); } 6% { opacity: 1; transform: scale(0.85); } 10%, 100% { opacity: 0; transform: scale(1.5); } }
+@keyframes tap14 { 0%, 13% { opacity: 0; transform: scale(0.6); } 14% { opacity: 1; transform: scale(0.85); } 18%, 100% { opacity: 0; transform: scale(1.5); } }
+@keyframes tap22 { 0%, 21% { opacity: 0; transform: scale(0.6); } 22% { opacity: 1; transform: scale(0.85); } 26%, 100% { opacity: 0; transform: scale(1.5); } }
+@keyframes tap30 { 0%, 29% { opacity: 0; transform: scale(0.6); } 30% { opacity: 1; transform: scale(0.85); } 34%, 100% { opacity: 0; transform: scale(1.5); } }
+@keyframes tap38 { 0%, 37% { opacity: 0; transform: scale(0.6); } 38% { opacity: 1; transform: scale(0.85); } 42%, 100% { opacity: 0; transform: scale(1.3); } }
+@keyframes tap44 { 0%, 43% { opacity: 0; transform: scale(0.6); } 44% { opacity: 1; transform: scale(0.85); } 48%, 100% { opacity: 0; transform: scale(1.3); } }

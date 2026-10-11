@@ -6,6 +6,7 @@ import { CurtainLink } from "../../components/CurtainLink/CurtainLink";
 import { ImageSlot } from "../../components/ImageSlot/ImageSlot";
 import { VideoSlot } from "../../components/VideoSlot/VideoSlot";
 import { Chip } from "../../components/Chip/Chip";
+import { FeatureLoop } from "../../components/FeatureLoop/FeatureLoop";
 import { useDocumentMeta } from "../../hooks/useDocumentMeta";
 import { revealDelay, revealRef } from "../../hooks/useReveal";
 import { SpecRail } from "./SpecRail";
@@ -79,45 +80,52 @@ function CaseStudyView({ project: p, index }: { project: Project; index: number 
 
             <NarrativeSection id="experience" num="03" title="How it feels to shop">
               <p className={`${styles.para} ${styles.paraExperience}`}>{p.experience}</p>
-              {clips.length > 0 && (
-                <div className={styles.clips}>
-                  {clips.map((v) => (
-                    <VideoSlot key={v.name} video={v} fallbackPoster={p.image} className={styles.clip} />
-                  ))}
-                </div>
-              )}
-              <div className={styles.details}>
-                <ImageSlot
-                  image={p.gallery?.[0] ?? p.image}
-                  caption="UI detail — desktop"
-                  alt={`${p.brand} — UI detail, desktop`}
-                  className={styles.detail}
-                  position="0% 0%"
-                  sizes="(min-width: 900px) 33vw, 100vw"
-                />
-                <ImageSlot
-                  image={p.image}
-                  caption="UI detail — mobile"
-                  alt={`${p.brand} — UI detail, mobile`}
-                  className={styles.detail}
-                  position="100% 60%"
-                  sizes="(min-width: 900px) 33vw, 100vw"
-                />
-              </div>
-              {p.mobile && (
-                <ul className={styles.phones} aria-label="Mobile screens">
-                  {p.mobile.map((m, i) => (
-                    <li key={m.name} className={styles.phoneItem}>
-                      <ImageSlot
-                        image={m}
-                        caption={`Mobile screen ${i + 1}`}
-                        className={styles.phone}
-                        position="50% 0%"
-                        sizes="(min-width: 900px) 200px, 58vw"
-                      />
-                    </li>
-                  ))}
-                </ul>
+              {/* A coded loop replaces the screen recordings and screenshots under it. */}
+              {p.loop ? (
+                <FeatureLoop name={p.loop.name} caption={p.loop.caption} className={styles.featureLoop} />
+              ) : (
+                <>
+                  {clips.length > 0 && (
+                    <div className={styles.clips}>
+                      {clips.map((v) => (
+                        <VideoSlot key={v.name} video={v} fallbackPoster={p.image} className={styles.clip} />
+                      ))}
+                    </div>
+                  )}
+                  <div className={styles.details}>
+                    <ImageSlot
+                      image={p.gallery?.[0] ?? p.image}
+                      caption="UI detail — desktop"
+                      alt={`${p.brand} — UI detail, desktop`}
+                      className={styles.detail}
+                      position="0% 0%"
+                      sizes="(min-width: 900px) 33vw, 100vw"
+                    />
+                    <ImageSlot
+                      image={p.image}
+                      caption="UI detail — mobile"
+                      alt={`${p.brand} — UI detail, mobile`}
+                      className={styles.detail}
+                      position="100% 60%"
+                      sizes="(min-width: 900px) 33vw, 100vw"
+                    />
+                  </div>
+                  {p.mobile && (
+                    <ul className={styles.phones} aria-label="Mobile screens">
+                      {p.mobile.map((m, i) => (
+                        <li key={m.name} className={styles.phoneItem}>
+                          <ImageSlot
+                            image={m}
+                            caption={`Mobile screen ${i + 1}`}
+                            className={styles.phone}
+                            position="50% 0%"
+                            sizes="(min-width: 900px) 200px, 58vw"
+                          />
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </>
               )}
             </NarrativeSection>
 
