@@ -1,8 +1,9 @@
 /*
- * Almsthre loop. Timeline (% of 10 s): Field Notes 0–38 (Events filter tapped 15, stories swap 16)
- * · "Bags" tapped 25, drawer open 26–29 · Frame Bags tapped 35, drawer closes 37–40 · collection 38–41
+ * Almsthre loop. Timeline (% of 10 s): homepage 0–38 · "Bags" tapped 3, drawer open 4–7 · Field Notes tab
+ * 11 (panel swaps 11.5) · Events tapped 18, drawer widens 18.5–20.5 with the posts 19.5–21.5 · Bags tab 29
+ * (narrows, panel swaps back 29.5) · Frame Bags tapped 34, drawer closes 36–39 · collection 38–41
  * · swatch → black 47 · quick add 54–55, cart 1 at 56 · product page 64–67 · sticky bar up 67–70
- * · colour → Sand 72–73 (page and sticky bar) · sticky add 84–85, cart 2 at 86 · back to Field Notes
+ * · colour → Sand 72–73 (page and sticky bar) · sticky add 84–85, cart 2 at 86 · back to the homepage
  * 95–99 · reset 98. The URL follows the page: 39 and 66.
  */
 .scene {
@@ -109,8 +110,9 @@
   animation-name: navBags;
 }
 
+/* Phones show this one next to Bags. */
 .navNotes {
-  animation-name: navNotes;
+  white-space: nowrap;
 }
 
 .icons {
@@ -171,109 +173,49 @@
   font-weight: 400;
 }
 
-/* ---------- Field Notes ---------- */
-.notes {
+/* ---------- Homepage, behind the drawer ---------- */
+.home {
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
-  padding: calc(var(--u) * 2.4) calc(var(--u) * 3) 0;
-  background: #fff;
-  animation-name: notes;
+  background: #f1f1f1;
+  animation-name: home;
 }
 
-.categoriesLabel {
-  margin-top: calc(var(--u) * 1.4);
-  font-size: calc(var(--u) * 1.2);
-  color: var(--muted);
-}
-
-.categories {
+.hero {
   display: flex;
-  flex-wrap: wrap;
-  gap: calc(var(--u) * 0.7);
-  margin-top: calc(var(--u) * 0.9);
+  align-items: flex-end;
+  height: 52%;
+  padding: calc(var(--u) * 2.4) calc(var(--u) * 3);
+  background: linear-gradient(160deg, #6f7a64, #3b4136 55%, #23261f);
+  color: #fff;
+  font-weight: 800;
+  font-size: calc(var(--u) * 3);
+  letter-spacing: -0.02em;
 }
 
-.categories span {
-  padding: calc(var(--u) * 0.6) calc(var(--u) * 1.2);
-  border-radius: 99px;
-  background: #f1f0f2;
-  font-size: calc(var(--u) * 1.05);
-}
-
-.catAll {
-  animation-name: catAll;
-}
-
-.catEvents {
-  animation-name: catEvents;
-}
-
-.stories {
+.homeTiles {
   display: grid;
-  flex: 1;
-  margin: calc(var(--u) * 2) calc(var(--u) * -3) 0;
+  grid-template-columns: repeat(4, 1fr);
+  gap: calc(var(--u) * 1.4);
   padding: calc(var(--u) * 2) calc(var(--u) * 3);
-  background: #f3f2f4;
 }
 
-.stories > div {
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--u) * 2);
-  grid-area: 1 / 1;
-}
-
-.storiesAll { animation-name: before16; }
-.storiesEvents { animation-name: after16; }
-
-.story {
+.homeTiles span {
   display: grid;
-  grid-template-columns: calc(var(--u) * 18) 1fr;
-  gap: calc(var(--u) * 2);
+  place-items: center;
+  height: calc(var(--u) * 10);
+  color: #fff;
+  font-size: calc(var(--u) * 1.3);
+  font-weight: 800;
+  text-shadow: 0 1px calc(var(--u) * 0.8) rgba(0, 0, 0, 0.5);
 }
 
-.storyImage {
-  height: calc(var(--u) * 11);
-}
-
-.storyImage[data-tone="0"] { background: linear-gradient(150deg, #6b3a2c, #c6923f 45%, #2f2a28); }
-.storyImage[data-tone="1"] { background: linear-gradient(170deg, #dfe7ee, #a9b9c6 50%, #f4f6f8); }
-.storyImage[data-tone="2"] { background: linear-gradient(160deg, #8fa7c0, #b98d55 55%, #5d4a33); }
-.storyImage[data-tone="3"] { background: linear-gradient(160deg, #e7c9a0, #b48a5a 50%, #6e7c5b); }
-
-.storyText {
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--u) * 0.6);
-  font-size: calc(var(--u) * 1.05);
-}
-
-.storyText small {
-  color: var(--muted);
-  font-size: calc(var(--u) * 0.95);
-}
-
-.storyText b {
-  font-size: calc(var(--u) * 1.5);
-  font-weight: 700;
-}
-
-.storyText i {
-  height: calc(var(--u) * 0.6);
-  border-radius: 99px;
-  background: rgba(29, 28, 43, 0.12);
-}
-
-.storyText i[data-short] {
-  width: 60%;
-}
-
-.storyText u {
-  margin-top: calc(var(--u) * 0.4);
-  font-weight: 600;
-}
+.homeTiles span[data-tone="0"] { background: linear-gradient(160deg, #8fa3b8, #6d7a52 60%, #a99a6b); }
+.homeTiles span[data-tone="1"] { background: linear-gradient(160deg, #3f5a34, #2f3b2a 60%, #4a4a44); }
+.homeTiles span[data-tone="2"] { background: linear-gradient(160deg, #c9d3dc, #8d9196 55%, #6e5a44); }
+.homeTiles span[data-tone="3"] { background: linear-gradient(160deg, #6b4a2f, #c2452f 55%, #2a2a2a); }
 
 /* ---------- Collection ---------- */
 .collection {
@@ -505,13 +447,20 @@
   bottom: 0;
   left: 0;
   display: flex;
+  overflow: hidden;
+  width: calc(var(--u) * 40);
+  background: #fff;
+  box-shadow: calc(var(--u) * 2) 0 calc(var(--u) * 4) rgba(0, 0, 0, 0.2);
+  animation-name: drawer, drawerWidth;
+}
+
+.drawerLeft {
+  display: flex;
+  flex: none;
   flex-direction: column;
   gap: calc(var(--u) * 1.6);
   width: calc(var(--u) * 40);
   padding: calc(var(--u) * 2.4) calc(var(--u) * 2.6);
-  background: #fff;
-  box-shadow: calc(var(--u) * 2) 0 calc(var(--u) * 4) rgba(0, 0, 0, 0.2);
-  animation-name: drawer;
 }
 
 .drawerTabs {
@@ -521,8 +470,29 @@
   font-size: calc(var(--u) * 1.2);
 }
 
-.drawerTabs span:first-child {
-  color: var(--rust);
+.tabBags {
+  animation-name: tabBags;
+}
+
+.tabNotes {
+  animation-name: tabNotes;
+}
+
+/* The Bags and Field Notes panels share one spot and swap. */
+.panels {
+  display: grid;
+}
+
+.panels > * {
+  grid-area: 1 / 1;
+}
+
+.bagsPanel {
+  animation-name: bagsPanel;
+}
+
+.notesPanel {
+  animation-name: notesPanel;
 }
 
 .pills {
@@ -540,8 +510,16 @@
   font-size: calc(var(--u) * 1.1);
 }
 
-.pills span[data-tap] {
+.bagsPanel span[data-tap] {
   animation-name: pillPick;
+}
+
+.notesPanel .catAll {
+  animation-name: catAll;
+}
+
+.notesPanel .catEvents {
+  animation-name: catEvents;
 }
 
 .drawerSearch {
@@ -557,6 +535,53 @@
   text-transform: uppercase;
 }
 
+/* Posts for the picked category, in the widened drawer */
+.posts {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: calc(var(--u) * 1.4);
+  width: calc(var(--u) * 46);
+  padding: calc(var(--u) * 2.4) calc(var(--u) * 2.6) calc(var(--u) * 2.4) 0;
+  animation-name: posts;
+}
+
+.viewAll {
+  align-self: flex-end;
+  font-size: calc(var(--u) * 1.1);
+  font-weight: 600;
+}
+
+.postGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: calc(var(--u) * 1.4);
+}
+
+.post {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--u) * 0.5);
+}
+
+.post small {
+  color: var(--muted);
+  font-size: calc(var(--u) * 0.95);
+}
+
+.post b {
+  font-size: calc(var(--u) * 1.25);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.postImage {
+  aspect-ratio: 4 / 3;
+}
+
+.postImage[data-tone="0"] { background: linear-gradient(160deg, #8fa7c0, #b98d55 55%, #5d4a33); }
+.postImage[data-tone="1"] { background: linear-gradient(160deg, #e7c9a0, #b48a5a 50%, #6e7c5b); }
+
 /* ---------- Phones ---------- */
 @media (max-width: 719px) {
   .page {
@@ -565,7 +590,6 @@
 
   .header,
   .collection,
-  .notes,
   .sticky {
     padding-left: calc(var(--u) * 2);
     padding-right: calc(var(--u) * 2);
@@ -581,22 +605,19 @@
     display: none;
   }
 
-  .categories span:nth-child(n + 4) {
-    display: none;
+  .hero {
+    height: 44%;
+    padding: calc(var(--u) * 2);
+    font-size: calc(var(--u) * 2.4);
   }
 
-  .stories {
-    margin: calc(var(--u) * 1.6) calc(var(--u) * -2) 0;
+  .homeTiles {
+    grid-template-columns: repeat(2, 1fr);
     padding: calc(var(--u) * 1.6) calc(var(--u) * 2);
   }
 
-  .story {
-    grid-template-columns: calc(var(--u) * 14) 1fr;
-    gap: calc(var(--u) * 1.4);
-  }
-
-  .storyImage {
-    height: calc(var(--u) * 10);
+  .homeTiles span {
+    height: calc(var(--u) * 6);
   }
 
   .searchIcon {
@@ -627,58 +648,105 @@
     display: none;
   }
 
+  /* Phones: a full-width drawer; the posts appear under the categories instead of widening it. */
   .drawer {
     width: 100%;
+    animation-name: drawer;
+  }
+
+  .drawerLeft {
+    width: 100%;
+  }
+
+  .drawerSearch {
+    display: none;
+  }
+
+  .posts {
+    position: absolute;
+    left: calc(var(--u) * 2.6);
+    right: calc(var(--u) * 2.6);
+    bottom: calc(var(--u) * 2.4);
+    width: auto;
+    padding: 0;
   }
 }
 
 /* ---------- Timeline ---------- */
-@keyframes notes {
+@keyframes home {
   0%, 38% { opacity: 1; visibility: visible; }
   41%, 95% { opacity: 0; visibility: hidden; }
   99%, 100% { opacity: 1; visibility: visible; }
 }
 
-@keyframes catAll {
-  0%, 15% { background: #6d6c75; color: #fff; }
-  16.5%, 97.9% { background: #f1f0f2; color: var(--ink); }
-  98%, 100% { background: #6d6c75; color: #fff; }
-}
-
-@keyframes catEvents {
-  0%, 15% { background: #f1f0f2; color: var(--ink); }
-  16.5%, 97.9% { background: #6d6c75; color: #fff; }
-  98%, 100% { background: #f1f0f2; color: var(--ink); }
-}
-
-@keyframes navNotes {
-  0%, 24% { color: var(--rust); }
-  25%, 97.9% { color: var(--ink); }
-  98%, 100% { color: var(--rust); }
-}
-
 @keyframes navBags {
-  0%, 24% { color: var(--ink); }
-  25%, 38% { color: var(--rust); }
+  0%, 2.9% { color: var(--ink); }
+  3%, 38% { color: var(--rust); }
   40%, 100% { color: var(--ink); }
 }
 
 @keyframes drawer {
-  0%, 26% { transform: translateX(-105%); }
-  29%, 37% { transform: translateX(0); }
-  40%, 100% { transform: translateX(-105%); }
+  0%, 4% { transform: translateX(-105%); }
+  7%, 36% { transform: translateX(0); }
+  39%, 100% { transform: translateX(-105%); }
+}
+
+@keyframes drawerWidth {
+  0%, 18.5% { width: calc(var(--u) * 40); }
+  20.5%, 28.5% { width: calc(var(--u) * 86); }
+  30.5%, 100% { width: calc(var(--u) * 40); }
 }
 
 @keyframes scrim {
-  0%, 26% { opacity: 0; }
-  29%, 37% { opacity: 1; }
-  40%, 100% { opacity: 0; }
+  0%, 4% { opacity: 0; }
+  7%, 36% { opacity: 1; }
+  39%, 100% { opacity: 0; }
+}
+
+@keyframes tabBags {
+  0%, 11.4% { color: var(--rust); }
+  11.5%, 29.4% { color: var(--ink); }
+  29.5%, 100% { color: var(--rust); }
+}
+
+@keyframes tabNotes {
+  0%, 11.4% { color: var(--ink); }
+  11.5%, 29.4% { color: var(--rust); }
+  29.5%, 100% { color: var(--ink); }
+}
+
+@keyframes bagsPanel {
+  0%, 11.4% { opacity: 1; visibility: visible; }
+  11.5%, 29.4% { opacity: 0; visibility: hidden; }
+  29.5%, 100% { opacity: 1; visibility: visible; }
+}
+
+@keyframes notesPanel {
+  0%, 11.4% { opacity: 0; visibility: hidden; }
+  11.5%, 29.4% { opacity: 1; visibility: visible; }
+  29.5%, 100% { opacity: 0; visibility: hidden; }
+}
+
+@keyframes catAll {
+  0%, 18% { background: #6d6c75; color: #fff; }
+  18.5%, 100% { background: #f1f0f2; color: var(--ink); }
+}
+
+@keyframes catEvents {
+  0%, 18% { background: #f1f0f2; color: var(--ink); }
+  18.5%, 100% { background: #6d6c75; color: #fff; }
+}
+
+@keyframes posts {
+  0%, 19.5% { opacity: 0; visibility: hidden; transform: translateX(calc(var(--u) * 2)); }
+  21.5%, 28.5% { opacity: 1; visibility: visible; transform: none; }
+  29.5%, 100% { opacity: 0; visibility: hidden; }
 }
 
 @keyframes pillPick {
-  0%, 34% { background: #f1f0f2; color: var(--ink); }
-  35.5%, 38% { background: var(--ink); color: #fff; }
-  40%, 100% { background: #f1f0f2; color: var(--ink); }
+  0%, 33.9% { background: #f1f0f2; color: var(--ink); }
+  34.5%, 37% { background: var(--ink); color: #fff; }
+  39%, 100% { background: #f1f0f2; color: var(--ink); }
 }
 
 @keyframes collection {
@@ -746,8 +814,6 @@
 @keyframes u1 { 0%, 38.9% { opacity: 0; } 39%, 65.9% { opacity: 1; } 66%, 100% { opacity: 0; } }
 @keyframes u2 { 0%, 65.9% { opacity: 0; } 66%, 98.9% { opacity: 1; } 99%, 100% { opacity: 0; } }
 
-@keyframes before16 { 0%, 15.9% { opacity: 1; } 16%, 97.9% { opacity: 0; } 98%, 100% { opacity: 1; } }
-@keyframes after16 { 0%, 15.9% { opacity: 0; } 16%, 97.9% { opacity: 1; } 98%, 100% { opacity: 0; } }
 @keyframes before55 { 0%, 54.9% { opacity: 1; } 55%, 97.9% { opacity: 0; } 98%, 100% { opacity: 1; } }
 @keyframes after55 { 0%, 54.9% { opacity: 0; } 55%, 97.9% { opacity: 1; } 98%, 100% { opacity: 0; } }
 @keyframes before73 { 0%, 72.9% { opacity: 1; } 73%, 97.9% { opacity: 0; } 98%, 100% { opacity: 1; } }
